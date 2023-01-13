@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://q5jh8y0d50r1"]
+
+[ext_resource type="Script" path="res://Scripts/Card.gd" id="1_5cxal"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oc4hc"]
+
+[node name="Card" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_5cxal")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+shape = SubResource("RectangleShape2D_oc4hc")
+
+[node name="ClickableArea" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+flat = true
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
+[connection signal="button_down" from="ClickableArea" to="." method="_on_clickable_area_button_down"]
+[connection signal="button_up" from="ClickableArea" to="." method="_on_clickable_area_button_up"]

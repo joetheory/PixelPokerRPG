@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck0mmuh2cg6ce"]
+
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_10g5l"]
+[ext_resource type="PackedScene" uid="uid://tky406nj70ma" path="res://Scenes/Deck.tscn" id="1_scm7q"]
+[ext_resource type="PackedScene" uid="uid://o1vpjua0yto" path="res://Scenes/Playfield.tscn" id="3_ey3oo"]
+[ext_resource type="PackedScene" uid="uid://dyd26mu0gobvh" path="res://Scenes/PlayerHand.tscn" id="3_txo8x"]
+[ext_resource type="PackedScene" uid="uid://dswxk2yuii402" path="res://Scenes/OpponentHand.tscn" id="5_agxba"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_10g5l")
+
+[node name="Deck" parent="." instance=ExtResource("1_scm7q")]
+position = Vector2(416, 104)
+
+[node name="PlayField" parent="." instance=ExtResource("3_ey3oo")]
+position = Vector2(56, 128)
+
+[node name="PlayerHand" parent="." instance=ExtResource("3_txo8x")]
+position = Vector2(180, 561)
+
+[node name="OpponentHand" parent="." instance=ExtResource("5_agxba")]
+position = Vector2(180, 8)
+scale = Vector2(-1, -1)
