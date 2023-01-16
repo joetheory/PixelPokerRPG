@@ -12,6 +12,8 @@ var face_up : bool = false
 var selectable : bool = false
 var selected : bool =  false
 
+
+
 @onready var sprite := $Sprite as Sprite2D
 @onready var clickable_area := $ClickableArea as Button
 
@@ -25,7 +27,6 @@ func _ready() -> void:
 	sprite.texture = front if face_up else back
 	clickable_area.size = sprite.texture.get_size()
 	clickable_area.position -= sprite.texture.get_size() / 2
-	#clickable_area.position.y -= sprite.texture.get_size().y / 2
 	$Hitbox/HitboxShape.shape.size = sprite.texture.get_size()
 	
 	

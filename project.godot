@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Object",
+"class": &"BaseState",
+"language": &"GDScript",
+"path": "res://Components/StateMachine/BaseState.gd"
+}, {
 "base": "Node2D",
 "class": &"Card",
 "language": &"GDScript",
@@ -43,15 +48,22 @@ _global_script_classes=[{
 "class": &"PlayerHand",
 "language": &"GDScript",
 "path": "res://Scripts/PlayerHand.gd"
+}, {
+"base": "Node",
+"class": &"StateMachine",
+"language": &"GDScript",
+"path": "res://Components/StateMachine/StateMachine.gd"
 }]
 _global_script_class_icons={
+"BaseState": "",
 "Card": "",
 "CardContainer": "",
 "Deck": "",
 "DropZone": "",
 "OpponentHand": "",
 "PlayField": "",
-"PlayerHand": ""
+"PlayerHand": "",
+"StateMachine": ""
 }
 
 [application]

@@ -31,5 +31,5 @@ func _on_child_entered_tree(node: Node) -> void:
 	if node is Card:
 		node.flip()
 		node.selectable = true
-	#node.current_snap_point = snap_point
+		
 	redrawVisuals()

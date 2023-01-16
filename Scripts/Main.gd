@@ -20,7 +20,11 @@ func _ready() -> void:
 	containersToDealCardsTo = [player_hand,opponent_hand]
 	deck.dealNumberOfCardsToEachContainer(5, containersToDealCardsTo)
 	
-	play_field.slots_to_populate = [play_field.available_slots[0],play_field.available_slots[4],play_field.available_slots[5]]
+	play_field.slots_to_populate = [
+			play_field.available_slots[0],
+			play_field.available_slots[4],
+			play_field.available_slots[5]
+		]
 	containersToDealCardsTo = [play_field]
 	deck.dealNumberOfCardsToEachContainer(3, containersToDealCardsTo)
 	
