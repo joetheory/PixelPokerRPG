@@ -6,7 +6,8 @@ var front := load("res://Assets/cards/cardJoker.png") as Texture2D
 var back := load("res://Assets/cards/cardBack_blue2.png") as Texture2D
 var rank : int
 var suit : int
-var last_snap_point : Marker2D
+var current_parent : CardContainer
+var previous_parent : CardContainer
 var current_snap_point : Marker2D
 var face_up : bool = false
 var selectable : bool = false
@@ -36,9 +37,18 @@ func _physics_process(delta: float) -> void:
 		look_at(get_global_mouse_position() + Vector2(25,0))
 	else:
 		if current_snap_point:
-			rotation = 0
-			global_position = lerp(self.global_position, current_snap_point.global_position, 10 * delta)
-			reparent(current_snap_point)
+			if self.global_position.distance_to(current_snap_point.global_position) > 0:
+				global_position = lerp(self.global_position, current_snap_point.global_position, 10 * delta)
+				rotation = 0
+			else:
+				reparent(current_snap_point)
+				
+		else:
+			if get_parent() is PlayerHand:
+				if self.global_position.distance_to(get_parent().global_position) > 0:
+					global_position = lerp(self.global_position, get_parent().global_position, 10 * delta)
+					reparent(get_parent())
+					get_parent().redrawVisuals()
 		
 
 func getReadbaleName() -> String:
@@ -55,6 +65,7 @@ func flip() -> void:
 
 func _on_clickable_area_button_down() -> void:
 	if selectable: selected = true
+	
 	
 
 func _on_clickable_area_button_up() -> void:

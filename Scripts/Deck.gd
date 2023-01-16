@@ -1,7 +1,6 @@
 class_name Deck extends CardContainer
 
 # - VARIABLES - ################################################################
-
 var card_scene = load("res://Scenes/Card.tscn") as PackedScene
 
 # - SIGNALS - ##################################################################
@@ -9,8 +8,8 @@ var card_scene = load("res://Scenes/Card.tscn") as PackedScene
 
 # - METHODS - ##################################################################
 
+
 func createNewDeck() -> void:
-	print_debug("Creating Deck")
 	for suit in range(1,5):
 		for rank in range(1,14):
 			var card : Card = card_scene.instantiate() as Card
@@ -20,16 +19,17 @@ func createNewDeck() -> void:
 			cards.append(card)
 	cards.shuffle()
 	populateCardNodesFromCardsArray()
-	
-func dealNumberOfCardsToEachContainer(number_of_cards: int, containers: Array[CardContainer]):
+
+
+func dealNumberOfCardsToEachContainer(number_of_cards: int, containers: Array):
 	for n in number_of_cards:
 		for container in containers:
-			var card = getTopCard()
+			var card : Card = getTopCard() as Card
 			card.reparent(container, false)
+			
 
 func getTopCard() -> Card:
 	if not cards.is_empty():
 		return cards.pop_back()
 	else:
 		return null
-	

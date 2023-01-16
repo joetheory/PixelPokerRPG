@@ -1,9 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://q5jh8y0d50r1"]
+[gd_scene load_steps=3 format=3 uid="uid://q5jh8y0d50r1"]
 
 [ext_resource type="Script" path="res://Scripts/Card.gd" id="1_5cxal"]
-[ext_resource type="Script" path="res://Components/StateMachine/StateMachine.gd" id="2_kprk0"]
-[ext_resource type="Script" path="res://Scripts/Card/States/Default.gd" id="3_hg5s0"]
-[ext_resource type="Script" path="res://Scripts/Card/States/InDeck.gd" id="3_x0e35"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oc4hc"]
 
@@ -24,22 +21,6 @@ shape = SubResource("RectangleShape2D_oc4hc")
 offset_right = 8.0
 offset_bottom = 8.0
 flat = true
-
-[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("2_kprk0")
-initial_state = NodePath("Default")
-
-[node name="Default" type="Node" parent="StateManager"]
-script = ExtResource("3_hg5s0")
-
-[node name="InTransit" type="Node" parent="StateManager"]
-
-[node name="InDeck" type="Node" parent="StateManager"]
-script = ExtResource("3_x0e35")
-
-[node name="InHand" type="Node" parent="StateManager"]
-
-[node name="InPlay" type="Node" parent="StateManager"]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
