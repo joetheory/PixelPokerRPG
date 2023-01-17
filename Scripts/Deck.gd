@@ -17,6 +17,7 @@ func createNewDeck() -> void:
 			card.set("rank",rank)
 			card.name = card.getReadableName()
 			cards.append(card)
+
 	cards.shuffle()
 	populateCardNodesFromCardsArray()
 

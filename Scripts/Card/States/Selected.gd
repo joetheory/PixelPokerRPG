@@ -5,7 +5,8 @@ extends BaseState
 # - METHODS - ##################################################################
 
 func enter() -> void:
-	owner.current_snap_point = owner.get_parent().snap_point
+	pass
+	#owner.current_snap_point = owner.get_parent().snap_point
 	
 
 func physics_process(delta) -> void:

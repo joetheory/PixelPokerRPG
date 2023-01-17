@@ -1,38 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://o1vpjua0yto"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" uid="uid://btmj17pu4i782" path="res://Scenes/DropZone.tscn" id="1_7mkrf"]
-[ext_resource type="Script" path="res://Scenes/Playfield.gd" id="1_16543"]
+[ext_resource type="Script" path="res://Scripts/PlayField.gd" id="1_n13od"]
+[ext_resource type="PackedScene" uid="uid://bvpwsyl5jkqi8" path="res://Scenes/PlayFieldSlot.tscn" id="2_cymk4"]
 
-[node name="Playfield" type="Node2D"]
-script = ExtResource("1_16543")
+[node name="PlayField" type="Node2D"]
+script = ExtResource("1_n13od")
 
 [node name="Slots" type="Node2D" parent="."]
 
-[node name="TL" parent="Slots" instance=ExtResource("1_7mkrf")]
-position = Vector2(42, 58)
+[node name="TopLeft" parent="Slots" instance=ExtResource("2_cymk4")]
 
-[node name="TM" parent="Slots" instance=ExtResource("1_7mkrf")]
-position = Vector2(130, 58)
+[node name="TopMiddle" parent="Slots" instance=ExtResource("2_cymk4")]
+position = Vector2(88, 0)
 
-[node name="TR" parent="Slots" instance=ExtResource("1_7mkrf")]
-position = Vector2(218, 58)
+[node name="TopRight" parent="Slots" instance=ExtResource("2_cymk4")]
+position = Vector2(176, 0)
 
-[node name="CL" parent="Slots" instance=ExtResource("1_7mkrf")]
-position = Vector2(42, 170)
+[node name="CenterLeft" parent="Slots" instance=ExtResource("2_cymk4")]
+position = Vector2(0, 112)
 
-[node name="CM" parent="Slots" instance=ExtResource("1_7mkrf")]
-position = Vector2(130, 170)
+[node name="CenterMiddle" parent="Slots" instance=ExtResource("2_cymk4")]
+position = Vector2(88, 112)
 
-[node name="CR" parent="Slots" instance=ExtResource("1_7mkrf")]
-position = Vector2(218, 170)
+[node name="CenterRight" parent="Slots" instance=ExtResource("2_cymk4")]
+position = Vector2(176, 112)
 
-[node name="BL" parent="Slots" instance=ExtResource("1_7mkrf")]
-position = Vector2(42, 282)
+[node name="BottomLeft" parent="Slots" instance=ExtResource("2_cymk4")]
+position = Vector2(0, 224)
 
-[node name="BM" parent="Slots" instance=ExtResource("1_7mkrf")]
-position = Vector2(130, 282)
+[node name="BottomMiddle" parent="Slots" instance=ExtResource("2_cymk4")]
+position = Vector2(88, 224)
 
-[node name="BR" parent="Slots" instance=ExtResource("1_7mkrf")]
-position = Vector2(218, 282)
+[node name="BottomRight" parent="Slots" instance=ExtResource("2_cymk4")]
+position = Vector2(176, 224)
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

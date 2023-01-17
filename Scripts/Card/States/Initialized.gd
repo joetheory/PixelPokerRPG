@@ -2,4 +2,5 @@ extends BaseState
 
 
 func enter() -> void:
-	pass
+	
+	fsm.change_to($"../Released")

@@ -46,16 +46,15 @@ func _on_clickable_area_button_down() -> void:
 	
 
 func _on_clickable_area_button_up() -> void:
-	fsm.change_to($StateMachine/Unselected)
+	fsm.change_to($StateMachine/Released)
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	if selected and area.get_parent() is DropZone:
-		current_snap_point = area.get_parent()
-		area.get_parent().highlightDropzone()
+	if self.fsm.current_state == $StateMachine/Selected:
+		pass
 
 
 func _on_hitbox_area_exited(area: Area2D) -> void:
-	if selected and area.get_parent() is DropZone:
-		area.get_parent().highlightDropzone()
-	
+	if self.fsm.current_state == $StateMachine/Selected:
+		pass
+		

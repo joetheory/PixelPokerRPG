@@ -27,8 +27,9 @@ func redrawVisuals() -> void:
 		card.rotation = card_tilt_curve.sample(hand_ratio) 
 
 
-func _on_child_entered_tree(card: Card) -> void:
-	card.flip()
-	card.selectable = true
-	card.current_snap_point = snap_point
+func _on_child_entered_tree(card: Node) -> void:
+	if card is Card:
+		card.flip()
+		card.selectable = true
+		card.current_snap_point = snap_point
 	redrawVisuals()

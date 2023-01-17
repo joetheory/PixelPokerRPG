@@ -4,6 +4,7 @@ class_name CardContainer extends Node2D
 
 var cards : Array[Card]
 var public : bool = false
+@export var node_to_hold_cards : Node
 
 # - SIGNALS - ##################################################################
 
@@ -14,14 +15,7 @@ func _ready() -> void:
 	populateCardNodesFromCardsArray()
 
 func populateCardNodesFromCardsArray() -> void:
-	# Remove current children
-	if self is PlayerHand or self is OpponentHand:
-		self.get_children().map(remove_child)
 	# Repopulate from array
 	for card in cards:
-		self.add_child(card)
-		
-	if self is PlayerHand or self is OpponentHand:
-		#print(cards)
-		#self.redrawVisuals()
-		pass
+		node_to_hold_cards.add_child(card)
+

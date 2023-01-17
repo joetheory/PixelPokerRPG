@@ -3,14 +3,17 @@ class_name StateMachine extends Node
 @export var initial_state : Node
 @onready var current_state : Node
 @onready var previous_state : Node
+var states : Dictionary = {}
 
 
 signal state_changed
 
 func _ready():
-	await owner.ready
 	
+	await owner.ready
+
 	for state in get_children():
+		states[state.name] = state
 		state.fsm = self
 		
 	if initial_state:
