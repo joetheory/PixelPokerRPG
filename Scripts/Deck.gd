@@ -15,7 +15,7 @@ func createNewDeck() -> void:
 			var card : Card = card_scene.instantiate() as Card
 			card.set("suit",suit)
 			card.set("rank",rank)
-			card.name = card.getReadbaleName()
+			card.name = card.getReadableName()
 			cards.append(card)
 	cards.shuffle()
 	populateCardNodesFromCardsArray()

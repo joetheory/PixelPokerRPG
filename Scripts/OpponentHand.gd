@@ -7,7 +7,7 @@ class_name OpponentHand extends CardContainer
 @export var card_tilt_curve: Curve
 @export var card_spread_factor: float = 75
 @export var card_curve_factor: float = 25
-@onready var snap_point = $SnapPoint as Marker2D
+@export var snap_point : Marker2D
 
 
 # - SIGNALS - ##################################################################

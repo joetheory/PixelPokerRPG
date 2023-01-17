@@ -4,6 +4,7 @@ class_name StateMachine extends Node
 @onready var current_state : Node
 @onready var previous_state : Node
 
+
 signal state_changed
 
 func _ready():
@@ -27,9 +28,8 @@ func change_to(new_state : Node):
 	
 func _enter_state():
 	emit_signal("state_changed",current_state)
-	print(get_parent().name, " entering state: ", current_state)
+	print_rich("[code][b]",owner.name,"[/b](",owner,")"," entering state: [b]", current_state,"[/b][/code]")
 	current_state.fsm = self
-	current_state.root = owner
 	current_state.enter()
 
 

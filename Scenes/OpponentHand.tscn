@@ -6,11 +6,12 @@
 [ext_resource type="Curve" uid="uid://b5letjygonutj" path="res://Assets/curves/hand_tilt_curve.tres" id="4_1buj3"]
 [ext_resource type="PackedScene" uid="uid://btmj17pu4i782" path="res://Scenes/DropZone.tscn" id="5_k7kx6"]
 
-[node name="OpponentHand" type="Node2D"]
+[node name="OpponentHand" type="Node2D" node_paths=PackedStringArray("snap_point")]
 script = ExtResource("1_38gd3")
 card_spread_curve = ExtResource("2_5mtwf")
 card_arc_curve = ExtResource("3_u3b8d")
 card_tilt_curve = ExtResource("4_1buj3")
+snap_point = NodePath("SnapPoint")
 
 [node name="SnapPoint" parent="." instance=ExtResource("5_k7kx6")]
 

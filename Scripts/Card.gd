@@ -6,17 +6,14 @@ var front := load("res://Assets/cards/cardJoker.png") as Texture2D
 var back := load("res://Assets/cards/cardBack_blue2.png") as Texture2D
 var rank : int
 var suit : int
-var current_parent : CardContainer
-var previous_parent : CardContainer
-var current_snap_point : Marker2D
+var current_snap_point : DropZone
 var face_up : bool = false
 var selectable : bool = false
 var selected : bool =  false
 
-
-
 @onready var sprite := $Sprite as Sprite2D
 @onready var clickable_area := $ClickableArea as Button
+@onready var fsm := $StateMachine as StateMachine
 
 # - SIGNALS - ##################################################################
 
@@ -29,29 +26,9 @@ func _ready() -> void:
 	clickable_area.size = sprite.texture.get_size()
 	clickable_area.position -= sprite.texture.get_size() / 2
 	$Hitbox/HitboxShape.shape.size = sprite.texture.get_size()
-	
-	
-func _physics_process(delta: float) -> void:
-	if selected:
-		global_position = lerp(self.global_position,get_global_mouse_position(), 25 * delta)
-		look_at(get_global_mouse_position() + Vector2(25,0))
-	else:
-		if current_snap_point:
-			if self.global_position.distance_to(current_snap_point.global_position) > 0:
-				global_position = lerp(self.global_position, current_snap_point.global_position, 10 * delta)
-				rotation = 0
-			else:
-				reparent(current_snap_point)
-				
-		else:
-			if get_parent() is PlayerHand:
-				if self.global_position.distance_to(get_parent().global_position) > 0:
-					global_position = lerp(self.global_position, get_parent().global_position, 10 * delta)
-					reparent(get_parent())
-					get_parent().redrawVisuals()
 		
 
-func getReadbaleName() -> String:
+func getReadableName() -> String:
 	var suits : Dictionary = {1:"Spades", 2:"Hearts", 3:"Diamonds", 4:"Clubs"}
 	var ranks : Dictionary = {1:"Ace", 2:"Two", 3:"Three", 4:"Four", 5:"Five", 6:"Six", 7:"Seven", 8:"Eight", 9:"Nine", 10:"Ten", 11:"Jack", 12:"Queen", 13:"King"}
 	var readable_name : String = str(ranks[rank]) + " of " + str(suits[suit])
@@ -64,12 +41,12 @@ func flip() -> void:
 
 
 func _on_clickable_area_button_down() -> void:
-	if selectable: selected = true
+	fsm.change_to($StateMachine/Selected)
 	
 	
 
 func _on_clickable_area_button_up() -> void:
-	if selectable: selected = false
+	fsm.change_to($StateMachine/Unselected)
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:

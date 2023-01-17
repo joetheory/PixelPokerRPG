@@ -7,7 +7,7 @@ class_name PlayerHand extends CardContainer
 @export var card_tilt_curve: Curve
 @export var card_spread_factor: float = 75
 @export var card_curve_factor: float = 25
-@export var snap_point: Marker2D
+@export var snap_point: DropZone
 
 
 # - SIGNALS - ##################################################################
@@ -30,5 +30,5 @@ func redrawVisuals() -> void:
 func _on_child_entered_tree(card: Card) -> void:
 	card.flip()
 	card.selectable = true
-	card.current_parent = self
+	card.current_snap_point = snap_point
 	redrawVisuals()
