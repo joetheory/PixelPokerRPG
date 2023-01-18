@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_10g5l"]
 [ext_resource type="PackedScene" uid="uid://tky406nj70ma" path="res://Scenes/Deck.tscn" id="1_scm7q"]
-[ext_resource type="PackedScene" path="res://Scenes/Playfield.tscn" id="3_ey3oo"]
+[ext_resource type="PackedScene" uid="uid://c4f4xnaluw210" path="res://Scenes/Playfield.tscn" id="3_ey3oo"]
 [ext_resource type="PackedScene" uid="uid://dyd26mu0gobvh" path="res://Scenes/PlayerHand.tscn" id="3_txo8x"]
 [ext_resource type="PackedScene" uid="uid://dswxk2yuii402" path="res://Scenes/OpponentHand.tscn" id="5_agxba"]
 

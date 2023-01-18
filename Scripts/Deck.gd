@@ -17,16 +17,16 @@ func createNewDeck() -> void:
 			card.set("rank",rank)
 			card.name = card.getReadableName()
 			cards.append(card)
-
 	cards.shuffle()
-	populateCardNodesFromCardsArray()
+	for card in cards:
+		node_to_hold_cards.add_child(card)
 
 
 func dealNumberOfCardsToEachContainer(number_of_cards: int, containers: Array):
 	for n in number_of_cards:
 		for container in containers:
 			var card : Card = getTopCard() as Card
-			card.reparent(container, false)
+			card.reparent(container.node_to_hold_cards, false)
 			
 
 func getTopCard() -> Card:

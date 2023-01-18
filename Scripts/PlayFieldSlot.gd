@@ -1,7 +1,5 @@
 class_name PlayFieldSlot extends CardContainer
 
-
-
 # - VARIABLES - ################################################################
 
 
@@ -12,4 +10,8 @@ class_name PlayFieldSlot extends CardContainer
 
 func _ready() -> void:
 	public = true
-	pass
+
+
+func _on_child_entered_tree(node: Node) -> void:
+	if node is Card and public:
+		node.flip()

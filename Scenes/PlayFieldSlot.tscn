@@ -1,12 +1,11 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://bpo5mvcpms08i"]
 
 [ext_resource type="Script" path="res://Scripts/PlayFieldSlot.gd" id="1_fknh8"]
 
 [node name="PlayFieldSlot" type="Node2D" node_paths=PackedStringArray("node_to_hold_cards")]
 script = ExtResource("1_fknh8")
+public = true
 node_to_hold_cards = NodePath("Card")
-
-[node name="Card" type="Node2D" parent="."]
 
 [node name="SnapTarget" type="Marker2D" parent="."]
 
@@ -23,3 +22,7 @@ offset_bottom = 53.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.160784)
+
+[node name="Card" type="Node2D" parent="."]
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

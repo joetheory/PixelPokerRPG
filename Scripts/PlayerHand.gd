@@ -7,17 +7,13 @@ class_name PlayerHand extends CardContainer
 @export var card_tilt_curve: Curve
 @export var card_spread_factor: float = 75
 @export var card_curve_factor: float = 25
-@export var snap_point: DropZone
-
 
 # - SIGNALS - ##################################################################
-
-
 
 # - METHODS - ##################################################################
 
 func redrawVisuals() -> void:
-	var currentCardNodes = get_children()
+	var currentCardNodes = self.node_to_hold_cards.get_children()
 	for card in currentCardNodes:
 		var hand_ratio : float = .5
 		if currentCardNodes.size() > 1:
@@ -29,7 +25,6 @@ func redrawVisuals() -> void:
 
 func _on_child_entered_tree(card: Node) -> void:
 	if card is Card:
-		card.flip()
+		#card.flip()
 		card.selectable = true
-		card.current_snap_point = snap_point
 	redrawVisuals()

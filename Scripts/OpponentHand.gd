@@ -7,17 +7,14 @@ class_name OpponentHand extends CardContainer
 @export var card_tilt_curve: Curve
 @export var card_spread_factor: float = 75
 @export var card_curve_factor: float = 25
-@export var snap_point : Marker2D
 
 
 # - SIGNALS - ##################################################################
 
-
-
 # - METHODS - ##################################################################
 
 func redrawVisuals() -> void:
-	var currentCardNodes = get_children()
+	var currentCardNodes = node_to_hold_cards.get_children()
 	for card in currentCardNodes:
 		var hand_ratio : float = .5
 		if currentCardNodes.size() > 1:

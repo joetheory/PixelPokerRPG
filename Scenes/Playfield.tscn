@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://c4f4xnaluw210"]
 
 [ext_resource type="Script" path="res://Scripts/PlayField.gd" id="1_n13od"]
-[ext_resource type="PackedScene" uid="uid://bvpwsyl5jkqi8" path="res://Scenes/PlayFieldSlot.tscn" id="2_cymk4"]
+[ext_resource type="PackedScene" uid="uid://bpo5mvcpms08i" path="res://Scenes/PlayFieldSlot.tscn" id="2_cymk4"]
 
 [node name="PlayField" type="Node2D"]
 script = ExtResource("1_n13od")
@@ -34,4 +34,4 @@ position = Vector2(88, 224)
 [node name="BottomRight" parent="Slots" instance=ExtResource("2_cymk4")]
 position = Vector2(176, 224)
 
-[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[node name="PlayFieldSlot" parent="Slots" instance=ExtResource("2_cymk4")]
