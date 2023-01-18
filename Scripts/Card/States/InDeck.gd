@@ -5,5 +5,5 @@ extends BaseState
 func enter() -> void:
 	owner.rotation = 0
 	owner.position = Vector2.ZERO
-	if owner.get_parent() is PlayerHand:
-		owner.get_parent().redrawVisuals() 
+	Events.emit_signal("CardBackAtHome")
+

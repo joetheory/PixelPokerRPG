@@ -5,16 +5,17 @@
 [ext_resource type="Curve" uid="uid://bvixrf64aupen" path="res://Assets/curves/card_arc_curve.tres" id="3_xdhoq"]
 [ext_resource type="Curve" uid="uid://b5letjygonutj" path="res://Assets/curves/hand_tilt_curve.tres" id="4_xfi6u"]
 
-[node name="PlayerHand" type="Node2D" node_paths=PackedStringArray("node_to_hold_cards")]
+[node name="PlayerHand" type="Node2D" node_paths=PackedStringArray("node_to_hold_cards", "snap_target")]
 script = ExtResource("1_8u1my")
 card_spread_curve = ExtResource("2_1pkq7")
 card_arc_curve = ExtResource("3_xdhoq")
 card_tilt_curve = ExtResource("4_xfi6u")
 public = true
 node_to_hold_cards = NodePath("Cards")
+snap_target = NodePath("SnapTarget")
 
 [node name="Cards" type="Node2D" parent="."]
 
 [node name="SnapTarget" type="Marker2D" parent="."]
 
-[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_entered_tree" from="Cards" to="." method="_on_cards_child_entered_tree"]

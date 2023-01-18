@@ -1,13 +1,7 @@
 extends BaseState
 
 # - VARIABLES - ################################################################
-# - SIGNALS - ##################################################################
 # - METHODS - ##################################################################
-
-func enter() -> void:
-	pass
-	#owner.current_snap_point = owner.get_parent().snap_point
-	
 
 func physics_process(delta) -> void:
 	owner.global_position = lerp(owner.global_position, owner.get_global_mouse_position(), 25 * delta)

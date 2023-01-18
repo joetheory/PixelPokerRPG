@@ -55,6 +55,11 @@ _global_script_classes=[{
 "path": "res://Scripts/PlayerHand.gd"
 }, {
 "base": "Node",
+"class": &"SignalBus",
+"language": &"GDScript",
+"path": "res://Scripts/SignalBus.gd"
+}, {
+"base": "Node",
 "class": &"StateMachine",
 "language": &"GDScript",
 "path": "res://Components/StateMachine/StateMachine.gd"
@@ -69,6 +74,7 @@ _global_script_class_icons={
 "PlayField": "",
 "PlayFieldSlot": "",
 "PlayerHand": "",
+"SignalBus": "",
 "StateMachine": ""
 }
 
@@ -78,6 +84,10 @@ config/name="Poker Rpg"
 run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
+
+[autoload]
+
+Events="*res://Scripts/SignalBus.gd"
 
 [input]
 

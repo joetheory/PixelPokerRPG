@@ -1,7 +1,6 @@
 class_name BaseState extends Node
 	
 var fsm: StateMachine
-var root: Node
 
 func enter():
 	pass

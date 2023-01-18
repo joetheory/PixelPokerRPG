@@ -6,6 +6,7 @@ var front := load("res://Assets/cards/cardJoker.png") as Texture2D
 var back := load("res://Assets/cards/cardBack_blue2.png") as Texture2D
 var rank : int
 var suit : int
+var previous_snap_point : DropZone
 var current_snap_point : DropZone
 var face_up : bool = false
 var selectable : bool = false
@@ -41,12 +42,15 @@ func flip() -> void:
 
 
 func _on_clickable_area_button_down() -> void:
-	fsm.change_to($StateMachine/Selected)
+	if selectable:
+		Events.emit_signal("CardSelected")
+		fsm.change_to($StateMachine/Selected)
 	
 	
-
 func _on_clickable_area_button_up() -> void:
-	fsm.change_to($StateMachine/Released)
+	if selectable:
+		Events.emit_signal("CardReleased")
+		fsm.change_to($StateMachine/Released)
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
@@ -58,3 +62,10 @@ func _on_hitbox_area_exited(area: Area2D) -> void:
 	if self.fsm.current_state == $StateMachine/Selected:
 		pass
 		
+
+func _on_clickable_area_mouse_entered() -> void:
+	scale += Vector2(.125,.125)
+
+
+func _on_clickable_area_mouse_exited() -> void:
+	scale -= Vector2(.125,.125)

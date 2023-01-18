@@ -33,5 +33,3 @@ position = Vector2(88, 224)
 
 [node name="BottomRight" parent="Slots" instance=ExtResource("2_cymk4")]
 position = Vector2(176, 224)
-
-[node name="PlayFieldSlot" parent="Slots" instance=ExtResource("2_cymk4")]

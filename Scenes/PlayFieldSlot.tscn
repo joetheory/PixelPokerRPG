@@ -1,13 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpo5mvcpms08i"]
+[gd_scene load_steps=3 format=3 uid="uid://bpo5mvcpms08i"]
 
 [ext_resource type="Script" path="res://Scripts/PlayFieldSlot.gd" id="1_fknh8"]
 
-[node name="PlayFieldSlot" type="Node2D" node_paths=PackedStringArray("node_to_hold_cards")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oaplj"]
+
+[node name="PlayFieldSlot" type="Node2D" node_paths=PackedStringArray("node_to_hold_cards") groups=["PlayFieldSlots"]]
 script = ExtResource("1_fknh8")
+base_color = Color(0.733333, 0.733333, 0.733333, 0.337255)
+highlight_color = Color(0, 0.65098, 0, 0.305882)
+droppable_color = Color(0.72549, 0.733333, 0, 0.419608)
 public = true
 node_to_hold_cards = NodePath("Card")
+droppable = true
 
 [node name="SnapTarget" type="Marker2D" parent="."]
+gizmo_extents = 25.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -25,4 +32,11 @@ color = Color(1, 1, 1, 0.160784)
 
 [node name="Card" type="Node2D" parent="."]
 
-[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_oaplj")
+
+[connection signal="child_entered_tree" from="Card" to="." method="_on_card_child_entered_tree"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]

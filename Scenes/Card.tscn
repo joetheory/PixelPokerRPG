@@ -1,16 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhc3dvyj5rdnn"]
+[gd_scene load_steps=8 format=3 uid="uid://bhc3dvyj5rdnn"]
 
 [ext_resource type="Script" path="res://Scripts/Card/Card.gd" id="1_5cxal"]
 [ext_resource type="Texture2D" uid="uid://dv1bvr5knnqfa" path="res://icon.png" id="2_50r1r"]
 [ext_resource type="Script" path="res://Components/StateMachine/StateMachine.gd" id="2_ntl8h"]
-[ext_resource type="Script" path="res://Scripts/Card/States/Initialized.gd" id="3_8wnu6"]
 [ext_resource type="Script" path="res://Scripts/Card/States/InDeck.gd" id="3_t8nnq"]
 [ext_resource type="Script" path="res://Scripts/Card/States/Selected.gd" id="4_qeve7"]
 [ext_resource type="Script" path="res://Scripts/Card/States/Unselected.gd" id="5_ytao1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oc4hc"]
 
-[node name="Card" type="Node2D"]
+[node name="Card" type="Node2D" groups=["Cards"]]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_5cxal")
 
@@ -18,7 +17,6 @@ script = ExtResource("1_5cxal")
 texture = ExtResource("2_50r1r")
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_oc4hc")
@@ -30,12 +28,9 @@ flat = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_ntl8h")
-initial_state = NodePath("Initialized")
+initial_state = NodePath("Released")
 
-[node name="Initialized" type="Node" parent="StateMachine"]
-script = ExtResource("3_8wnu6")
-
-[node name="InContainer" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_t8nnq")
 
 [node name="Selected" type="Node" parent="StateMachine"]
@@ -48,3 +43,5 @@ script = ExtResource("5_ytao1")
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="button_down" from="ClickableArea" to="." method="_on_clickable_area_button_down"]
 [connection signal="button_up" from="ClickableArea" to="." method="_on_clickable_area_button_up"]
+[connection signal="mouse_entered" from="ClickableArea" to="." method="_on_clickable_area_mouse_entered"]
+[connection signal="mouse_exited" from="ClickableArea" to="." method="_on_clickable_area_mouse_exited"]
