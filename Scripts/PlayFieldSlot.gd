@@ -29,6 +29,8 @@ func dehighlightSlot() -> void:
 func _on_card_child_entered_tree(card: Card) -> void:
 	occupied = true
 	card.selectable = false
+	Events.emit_signal("CardPlacedOnPlayField", self)
+
 	if not card.face_up: 
 		card.flip()
 		

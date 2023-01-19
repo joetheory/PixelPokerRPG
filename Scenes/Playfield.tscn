@@ -8,28 +8,28 @@ script = ExtResource("1_n13od")
 
 [node name="Slots" type="Node2D" parent="."]
 
-[node name="TopLeft" parent="Slots" instance=ExtResource("2_cymk4")]
+[node name="TopLeft" parent="Slots" groups=["Left", "Top"] instance=ExtResource("2_cymk4")]
 
-[node name="TopMiddle" parent="Slots" instance=ExtResource("2_cymk4")]
+[node name="TopMiddle" parent="Slots" groups=["Middle", "Top"] instance=ExtResource("2_cymk4")]
 position = Vector2(88, 0)
 
-[node name="TopRight" parent="Slots" instance=ExtResource("2_cymk4")]
+[node name="TopRight" parent="Slots" groups=["Right", "Top"] instance=ExtResource("2_cymk4")]
 position = Vector2(176, 0)
 
-[node name="CenterLeft" parent="Slots" instance=ExtResource("2_cymk4")]
+[node name="CenterLeft" parent="Slots" groups=["Center", "Left"] instance=ExtResource("2_cymk4")]
 position = Vector2(0, 112)
 
-[node name="CenterMiddle" parent="Slots" instance=ExtResource("2_cymk4")]
+[node name="CenterMiddle" parent="Slots" groups=["Center", "Middle"] instance=ExtResource("2_cymk4")]
 position = Vector2(88, 112)
 
-[node name="CenterRight" parent="Slots" instance=ExtResource("2_cymk4")]
+[node name="CenterRight" parent="Slots" groups=["Center", "Right"] instance=ExtResource("2_cymk4")]
 position = Vector2(176, 112)
 
-[node name="BottomLeft" parent="Slots" instance=ExtResource("2_cymk4")]
+[node name="BottomLeft" parent="Slots" groups=["Bottom", "Left"] instance=ExtResource("2_cymk4")]
 position = Vector2(0, 224)
 
-[node name="BottomMiddle" parent="Slots" instance=ExtResource("2_cymk4")]
+[node name="BottomMiddle" parent="Slots" groups=["Bottom", "Middle"] instance=ExtResource("2_cymk4")]
 position = Vector2(88, 224)
 
-[node name="BottomRight" parent="Slots" instance=ExtResource("2_cymk4")]
+[node name="BottomRight" parent="Slots" groups=["Bottom", "Right"] instance=ExtResource("2_cymk4")]
 position = Vector2(176, 224)
