@@ -4,7 +4,7 @@ class_name StateMachine extends Node
 @onready var current_state : Node
 @onready var previous_state : Node
 var states : Dictionary = {}
-var debug = false
+var debug = true
 
 
 signal state_changed
@@ -16,7 +16,6 @@ func _ready():
 	for state in get_children():
 		states[state.name] = state
 		state.fsm = self
-		
 	if initial_state:
 		current_state = initial_state
 	else:

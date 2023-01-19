@@ -6,8 +6,8 @@ var front := load("res://Assets/cards/cardJoker.png") as Texture2D
 var back := load("res://Assets/cards/cardBack_blue2.png") as Texture2D
 var rank : int
 var suit : int
-var previous_snap_point : DropZone
-var current_snap_point : DropZone
+var previous_snap_target : Marker2D
+var current_snap_target : Marker2D
 var face_up : bool = false
 var selectable : bool = false
 var selected : bool =  false
@@ -26,7 +26,7 @@ func _ready() -> void:
 	sprite.texture = front if face_up else back
 	clickable_area.size = sprite.texture.get_size()
 	clickable_area.position -= sprite.texture.get_size() / 2
-	$Hitbox/HitboxShape.shape.size = sprite.texture.get_size()
+	$Hitbox/HitboxShape.shape.size = sprite.texture.get_size() /2
 		
 
 func getReadableName() -> String:
@@ -51,6 +51,7 @@ func _on_clickable_area_button_up() -> void:
 	if selectable:
 		Events.emit_signal("CardReleased")
 		fsm.change_to($StateMachine/Released)
+		
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
