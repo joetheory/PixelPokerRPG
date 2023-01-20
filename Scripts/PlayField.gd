@@ -27,9 +27,25 @@ func checkHandValue(slot: PlayFieldSlot) -> void:
 				
 
 func evaluatePokerHand(cards: Array):
-	print("Time to calculate")
+	var is_flush : bool = false
+	var is_straight : bool = false
+	var hand := []
+	
 	for card in cards:
-		print(card.suit)
+		hand.append([card.rank ,card.suit])
+	hand.sort()
+	cards.sort()
+#	print(cards)
+	print(hand)
+
+	if hand[0][1] == hand[1][1] and hand[1][1] == hand[2][1]:
+		is_flush = true
+		print("flush")
+	if hand[0][0] == hand[1][0]-1 and hand[1][0]-1 == hand[2][0]-2:
+		is_straight = true
+		print("straight")
+		
+		
 
 #if all suits match
 	#if all distinct consecutive ranks

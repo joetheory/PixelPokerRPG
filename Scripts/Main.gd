@@ -14,7 +14,7 @@ extends Node
 
 func _ready() -> void:
 	deck.createNewDeck()
-	containersToDealCardsTo = [$PlayField/Slots/BottomLeft]
+	containersToDealCardsTo = [$PlayField/Slots/BottomLeft, $PlayField/Slots/BottomRight, $PlayField/Slots/CenterLeft]
 	deck.dealNumberOfCardsToEachContainer(1, containersToDealCardsTo)
 	
 	containersToDealCardsTo = [$PlayerHand, $OpponentHand]
