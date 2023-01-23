@@ -13,10 +13,13 @@ extends Node
 # - METHODS - ##################################################################
 
 func _ready() -> void:
+	Events.GameInitializing.connect(initializeGame)
+	
+	
+func initializeGame() -> void:
 	deck.createNewDeck()
 	containersToDealCardsTo = [$PlayField/Slots/Row1Col1]
 	deck.dealNumberOfCardsToEachContainer(1, containersToDealCardsTo)
 	
 	containersToDealCardsTo = [$PlayerHand, $OpponentHand]
 	deck.dealNumberOfCardsToEachContainer(5, containersToDealCardsTo)
-	

@@ -1,8 +1,8 @@
 class_name PlayField extends Node2D
 
 # - VARIABLES - ################################################################
-var play_field_columns : int = 3
-var play_field_rows : int = 3
+@export var play_field_columns : int = 3
+@export var play_field_rows : int = 3
 @onready var play_field_slot_scene := preload("res://Scenes/PlayFieldSlot.tscn")
 # - SIGNALS - ##################################################################
 

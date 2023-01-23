@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayField/CardSlot/Droppable.gd" id="4_h0icq"]
 [ext_resource type="Script" path="res://Scripts/PlayField/CardSlot/Selected.gd" id="5_37y2n"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmc1k"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewsku"]
 
 [node name="PlayFieldSlot" type="Node2D" node_paths=PackedStringArray("fsm", "node_to_hold_cards", "snap_target") groups=["PlayFieldSlots"]]
 script = ExtResource("1_fknh8")
@@ -37,11 +37,12 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0.160784)
 
 [node name="Card" type="Node2D" parent="."]
+scale = Vector2(0.5, 0.5)
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("RectangleShape2D_kmc1k")
+shape = SubResource("RectangleShape2D_ewsku")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_dqhb4")

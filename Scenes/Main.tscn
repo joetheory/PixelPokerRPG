@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgeo3cvm3k1al"]
+[gd_scene load_steps=9 format=3 uid="uid://dgeo3cvm3k1al"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_10g5l"]
 [ext_resource type="PackedScene" uid="uid://tky406nj70ma" path="res://Scenes/Deck.tscn" id="1_scm7q"]
 [ext_resource type="PackedScene" uid="uid://c4f4xnaluw210" path="res://Scenes/Playfield.tscn" id="3_ey3oo"]
 [ext_resource type="PackedScene" uid="uid://dyd26mu0gobvh" path="res://Scenes/PlayerHand.tscn" id="3_txo8x"]
 [ext_resource type="PackedScene" uid="uid://dswxk2yuii402" path="res://Scenes/OpponentHand.tscn" id="5_agxba"]
+[ext_resource type="Script" path="res://Components/StateMachine/StateMachine.gd" id="6_fwxpo"]
+[ext_resource type="Script" path="res://Scripts/Game/States/Initializing.gd" id="7_0r47b"]
+[ext_resource type="Script" path="res://Scripts/Game/States/PlayerTurn.gd" id="8_7c1p8"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_10g5l")
@@ -24,3 +27,13 @@ position = Vector2(191, 476)
 
 [node name="PlayField" parent="." instance=ExtResource("3_ey3oo")]
 position = Vector2(100, 100)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("6_fwxpo")
+initial_state = NodePath("Initializing")
+
+[node name="Initializing" type="Node" parent="StateMachine"]
+script = ExtResource("7_0r47b")
+
+[node name="PlayerTurn" type="Node" parent="StateMachine"]
+script = ExtResource("8_7c1p8")

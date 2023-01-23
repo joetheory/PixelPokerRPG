@@ -8,6 +8,7 @@ var card_scene = load("res://Scenes/Card.tscn") as PackedScene
 
 # - METHODS - ##################################################################
 
+
 func createNewDeck() -> void: 
 # Build a new standard deck of 52 card objects
 	for suit in range(1,5):
