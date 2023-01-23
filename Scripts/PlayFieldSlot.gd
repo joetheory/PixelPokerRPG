@@ -8,6 +8,7 @@ class_name PlayFieldSlot extends CardContainer
 @onready var color_rect := $ColorRect
 @export var occupied : bool = false
 
+
 # - SIGNALS - ##################################################################
 
 

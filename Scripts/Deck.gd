@@ -26,9 +26,7 @@ func dealNumberOfCardsToEachContainer(number_of_cards: int, containers: Array):
 	for n in number_of_cards:
 		for container in containers:
 			var card : Card = getTopCard() as Card
-			print(container.snap_target)
 			card.current_snap_target = container.snap_target
-		
 			card.fsm.change_to(card.fsm.states['Released'])
 			card.reparent(container.node_to_hold_cards, true)
 			
