@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpo5mvcpms08i"]
+
+[ext_resource type="Script" path="res://Scripts/PlayFieldSlot.gd" id="1_fknh8"]
+[ext_resource type="Script" path="res://Components/StateMachine/StateMachine.gd" id="2_dqhb4"]
+[ext_resource type="Script" path="res://Scripts/PlayField/CardSlot/Idle.gd" id="3_5far6"]
+[ext_resource type="Script" path="res://Scripts/PlayField/CardSlot/Droppable.gd" id="4_h0icq"]
+[ext_resource type="Script" path="res://Scripts/PlayField/CardSlot/Selected.gd" id="5_37y2n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmc1k"]
+
+[node name="PlayFieldSlot" type="Node2D" node_paths=PackedStringArray("fsm", "node_to_hold_cards", "snap_target") groups=["PlayFieldSlots"]]
+script = ExtResource("1_fknh8")
+base_color = Color(0.733333, 0.733333, 0.733333, 0.337255)
+highlight_color = Color(0, 0.65098, 0, 0.305882)
+droppable_color = Color(0.72549, 0.733333, 0, 0.419608)
+fsm = NodePath("StateMachine")
+public = true
+node_to_hold_cards = NodePath("Card")
+snap_target = NodePath("SnapTarget")
+droppable = true
+
+[node name="SnapTarget" type="Marker2D" parent="."]
+gizmo_extents = 25.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -52.0
+offset_right = 40.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.160784)
+
+[node name="Card" type="Node2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_kmc1k")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_dqhb4")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_5far6")
+
+[node name="Droppable" type="Node" parent="StateMachine"]
+script = ExtResource("4_h0icq")
+
+[node name="Selected" type="Node" parent="StateMachine"]
+script = ExtResource("5_37y2n")
+
+[connection signal="child_entered_tree" from="Card" to="." method="_on_card_child_entered_tree"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]

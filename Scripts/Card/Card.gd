@@ -6,7 +6,8 @@ var front := load("res://Assets/cards/cardJoker.png") as Texture2D
 var back := load("res://Assets/cards/cardBack_blue2.png") as Texture2D
 var rank : int
 var suit : int
-var current_snap_point : DropZone
+var previous_snap_target : Marker2D
+var current_snap_target : Marker2D
 var face_up : bool = false
 var selectable : bool = false
 var selected : bool =  false
@@ -25,7 +26,7 @@ func _ready() -> void:
 	sprite.texture = front if face_up else back
 	clickable_area.size = sprite.texture.get_size()
 	clickable_area.position -= sprite.texture.get_size() / 2
-	$Hitbox/HitboxShape.shape.size = sprite.texture.get_size()
+	$Hitbox/HitboxShape.shape.size = sprite.texture.get_size() /2
 		
 
 func getReadableName() -> String:
@@ -41,21 +42,31 @@ func flip() -> void:
 
 
 func _on_clickable_area_button_down() -> void:
-	fsm.change_to($StateMachine/Selected)
+	if selectable:
+		Events.emit_signal("CardSelected")
+		fsm.change_to($StateMachine/Selected)
 	
 	
-
 func _on_clickable_area_button_up() -> void:
-	fsm.change_to($StateMachine/Unselected)
+	if selectable:
+		Events.emit_signal("CardReleased")
+		fsm.change_to($StateMachine/Released)
+		
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	if selected and area.get_parent() is DropZone:
-		current_snap_point = area.get_parent()
-		area.get_parent().highlightDropzone()
+	if self.fsm.current_state == $StateMachine/Selected:
+		pass
 
 
 func _on_hitbox_area_exited(area: Area2D) -> void:
-	if selected and area.get_parent() is DropZone:
-		area.get_parent().highlightDropzone()
-	
+	if self.fsm.current_state == $StateMachine/Selected:
+		pass
+		
+
+func _on_clickable_area_mouse_entered() -> void:
+	scale += Vector2(.125,.125)
+
+
+func _on_clickable_area_mouse_exited() -> void:
+	scale -= Vector2(.125,.125)

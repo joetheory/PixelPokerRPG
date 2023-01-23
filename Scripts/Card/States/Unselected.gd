@@ -1,10 +1,12 @@
 extends BaseState
 
+# - VARIABLES - ################################################################
+# - SIGNALS - ##################################################################
+# - METHODS - ##################################################################
 
 func physics_process(delta: float) -> void:
-
-
-	if owner.global_position.distance_to(owner.get_parent().global_position) > 10:
-		owner.global_position = lerp(owner.global_position, owner.get_parent().global_position, 10 * delta)
+	if owner.global_position.distance_to(owner.current_snap_target.global_position) > 5:
+		owner.global_position = owner.current_snap_target.global_position
 	else:
-		fsm.change_to(fsm.get_node("InContainer"))	
+		owner.reparent(owner.current_snap_target.get_parent().node_to_hold_cards)
+		fsm.change_to(fsm.get_node("Idle"))	

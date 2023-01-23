@@ -2,5 +2,11 @@
 
 [ext_resource type="Script" path="res://Scripts/Deck.gd" id="1_g1h78"]
 
-[node name="Deck" type="Node2D"]
+[node name="Deck" type="Node2D" node_paths=PackedStringArray("node_to_hold_cards", "snap_target")]
 script = ExtResource("1_g1h78")
+node_to_hold_cards = NodePath("Cards")
+snap_target = NodePath("SnapTarget")
+
+[node name="Cards" type="Node2D" parent="."]
+
+[node name="SnapTarget" type="Marker2D" parent="."]
