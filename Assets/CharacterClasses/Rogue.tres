@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cwsyckepoety6"]
+
+[ext_resource type="Script" path="res://Assets/CharacterClasses/CharacterClass.gd" id="1_vb6vh"]
+
+[resource]
+script = ExtResource("1_vb6vh")
+name = "Rogue"
+description = "Average health. Always goes last."
+base_health = 40
