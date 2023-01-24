@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://hhl5khbuk4gt"]
+
+[ext_resource type="Script" path="res://Scripts/ClassSelection.gd" id="1_j0mt3"]
+[ext_resource type="Resource" uid="uid://bgi0me8t1gmcp" path="res://Resources/CharacterClasses/Mage.tres" id="2_pegj5"]
+[ext_resource type="Resource" uid="uid://d31xad4af2s7o" path="res://Resources/CharacterClasses/Warrior.tres" id="3_lix6h"]
+[ext_resource type="Resource" uid="uid://brwjfyoinwg02" path="res://Resources/CharacterClasses/Rogue.tres" id="4_ckpnw"]
+[ext_resource type="Resource" uid="uid://c4t5p5rywpn8k" path="res://Resources/Enemies/Panurge.tres" id="5_wdr7t"]
+[ext_resource type="Resource" uid="uid://d3fobq5h4x3e8" path="res://Resources/Enemies/Gargantua.tres" id="6_37nhm"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ivkud"]
+resource_name = "Submit"
+
+[node name="ClassSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j0mt3")
+character_classes = [ExtResource("2_pegj5"), ExtResource("3_lix6h"), ExtResource("4_ckpnw")]
+enemies = [ExtResource("5_wdr7t"), ExtResource("6_37nhm")]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "What will you be called?"
+
+[node name="CharacterName" type="LineEdit" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Jaboo the Tardy"
+placeholder_text = "Enter a name!"
+max_length = 26
+
+[node name="ClassOptions" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ClassOptions"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Choose a class for your character."
+
+[node name="EnemyOptions" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/EnemyOptions"]
+layout_mode = 2
+text = "Choose an enemy to battle."
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -31.0
+offset_right = 45.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 10
+button_group = SubResource("ButtonGroup_ivkud")
+text = "Play Game
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

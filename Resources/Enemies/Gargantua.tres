@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://d3fobq5h4x3e8"]
+
+[ext_resource type="Texture2D" uid="uid://dv1bvr5knnqfa" path="res://icon.png" id="1_h6n8u"]
+[ext_resource type="Script" path="res://Resources/Enemies/Enemy.gd" id="1_on0bn"]
+
+[resource]
+script = ExtResource("1_on0bn")
+enemy_name = "Gargantua, father of Pantagruel"
+enemy_sprite = ExtResource("1_h6n8u")
+enemy_max_health = 70
+enemy_max_hand_size = 10

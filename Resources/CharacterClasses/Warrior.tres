@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d31xad4af2s7o"]
+
+[ext_resource type="Script" path="res://Resources/CharacterClasses/CharacterClass.gd" id="1_lsdb5"]
+
+[resource]
+script = ExtResource("1_lsdb5")
+name = "Warrior"
+description = "Higher maximum health"
+base_health = 50
+maximum_hand_size = 5

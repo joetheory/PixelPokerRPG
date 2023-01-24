@@ -26,10 +26,11 @@ func createNewDeck() -> void:
 func dealNumberOfCardsToEachContainer(number_of_cards: int, containers: Array):
 	for n in number_of_cards:
 		for container in containers:
-			var card : Card = getTopCard() as Card
-			card.current_snap_target = container.snap_target
-			card.fsm.change_to(card.fsm.states['Released'])
-			card.reparent(container.node_to_hold_cards, true)
+			if container.node_to_hold_cards.get_children().size() < container.maximum_number_of_cards:
+				var card : Card = getTopCard() as Card
+				card.current_snap_target = container.snap_target
+				card.fsm.change_to(card.fsm.states['Released'])
+				card.reparent(container.node_to_hold_cards, true)
 			
 
 func getTopCard() -> Card:

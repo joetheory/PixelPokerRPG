@@ -1,7 +1,5 @@
 extends Control
 
-@export var new_game_scene_to_load : NodePath
-
 # - VARIABLES - ################################################################
 
 
@@ -18,7 +16,7 @@ func _on_button_pressed() -> void:
 
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
+	get_tree().change_scene_to_file("res://Scenes/GameSelection.tscn")
 	pass # Replace with function body.
 
 

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Poker Rpg"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 Events="*res://Scripts/SignalBus.gd"
 PlayerManager="*res://Scripts/Player.gd"
+GameManager="*res://Scripts/Autoload/GameManager.gd"
 
 [display]
 

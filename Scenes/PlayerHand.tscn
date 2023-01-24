@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyd26mu0gobvh"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://Scripts/PlayerHand.gd" id="1_8u1my"]
-[ext_resource type="Curve" uid="uid://c6k8ebt0qtyoy" path="res://Assets/curves/hand_spread_curve.tres" id="2_1pkq7"]
-[ext_resource type="Curve" uid="uid://bvixrf64aupen" path="res://Assets/curves/card_arc_curve.tres" id="3_xdhoq"]
-[ext_resource type="Curve" uid="uid://b5letjygonutj" path="res://Assets/curves/hand_tilt_curve.tres" id="4_xfi6u"]
+[ext_resource type="Curve" uid="uid://c6k8ebt0qtyoy" path="res://Resources/Curves/hand_spread_curve.tres" id="2_1pkq7"]
+[ext_resource type="Curve" uid="uid://bvixrf64aupen" path="res://Resources/Curves/card_arc_curve.tres" id="3_xdhoq"]
+[ext_resource type="Curve" uid="uid://b5letjygonutj" path="res://Resources/Curves/hand_tilt_curve.tres" id="4_xfi6u"]
 
 [node name="PlayerHand" type="Node2D" node_paths=PackedStringArray("node_to_hold_cards", "snap_target")]
 script = ExtResource("1_8u1my")

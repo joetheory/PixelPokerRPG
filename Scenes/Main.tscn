@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_10g5l"]
 [ext_resource type="PackedScene" uid="uid://tky406nj70ma" path="res://Scenes/Deck.tscn" id="1_scm7q"]
 [ext_resource type="PackedScene" uid="uid://c4f4xnaluw210" path="res://Scenes/Playfield.tscn" id="3_ey3oo"]
-[ext_resource type="PackedScene" uid="uid://dyd26mu0gobvh" path="res://Scenes/PlayerHand.tscn" id="3_txo8x"]
-[ext_resource type="PackedScene" uid="uid://dswxk2yuii402" path="res://Scenes/OpponentHand.tscn" id="5_agxba"]
+[ext_resource type="PackedScene" path="res://Scenes/PlayerHand.tscn" id="3_txo8x"]
+[ext_resource type="PackedScene" path="res://Scenes/OpponentHand.tscn" id="5_agxba"]
 [ext_resource type="Script" path="res://Components/StateMachine/StateMachine.gd" id="6_fwxpo"]
 [ext_resource type="Script" path="res://Scripts/Game/States/Initializing.gd" id="7_0r47b"]
 [ext_resource type="Script" path="res://Scripts/Game/States/PlayerTurn.gd" id="8_7c1p8"]
@@ -18,15 +18,15 @@ position = Vector2(416, 104)
 
 [node name="OpponentHand" parent="." instance=ExtResource("5_agxba")]
 z_index = 20
-position = Vector2(184, -16)
+position = Vector2(187, -4)
 scale = Vector2(-1, -1)
 
 [node name="PlayerHand" parent="." instance=ExtResource("3_txo8x")]
 z_index = 20
-position = Vector2(191, 476)
+position = Vector2(181, 536)
 
 [node name="PlayField" parent="." instance=ExtResource("3_ey3oo")]
-position = Vector2(100, 100)
+position = Vector2(103, 136)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_fwxpo")
@@ -37,3 +37,29 @@ script = ExtResource("7_0r47b")
 
 [node name="PlayerTurn" type="Node" parent="StateMachine"]
 script = ExtResource("8_7c1p8")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.5
+anchor_right = 1.0
+offset_left = 6.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Player" type="Label" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="v" type="Label" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Enemy" type="Label" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
