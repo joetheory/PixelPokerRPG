@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi5b15t3e44ou"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_oyvj3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ia8vi"]
+font_size = 24
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oyvj3")
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+initial_position = 1
+title = "Are you sure?"
+current_screen = -2
+ok_button_text = "Yes"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="New Game" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Exit" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="ExitConfimation" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ExitConfimation"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+color = Color(0.239216, 0.0470588, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ExitConfimation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ExitConfimation/VBoxContainer"]
+layout_mode = 2
+text = "Are you sure?"
+label_settings = SubResource("LabelSettings_ia8vi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ExitConfimation/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Cancel" type="Button" parent="ExitConfimation/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Exit" type="Button" parent="ExitConfimation/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="cancelled" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_cancelled"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/New Game" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="ExitConfimation/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_confirm_pressed"]

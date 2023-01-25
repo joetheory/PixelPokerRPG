@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bgi0me8t1gmcp"]
+
+[ext_resource type="Script" path="res://Resources/CharacterClasses/CharacterClass.gd" id="1_q7awq"]
+
+[resource]
+script = ExtResource("1_q7awq")
+name = "Mage"
+description = "Low health but higher maximum hand size."
+max_health = 8
+current_health = 999
+maximum_hand_size = 6

@@ -1,8 +1,8 @@
 class_name PlayField extends Node2D
 
 # - VARIABLES - ################################################################
-var play_field_columns : int = 3
-var play_field_rows : int = 3
+@export var play_field_columns : int = 3
+@export var play_field_rows : int = 3
 @onready var play_field_slot_scene := preload("res://Scenes/PlayFieldSlot.tscn")
 # - SIGNALS - ##################################################################
 
@@ -63,6 +63,7 @@ func evaluatePokerHand(cards: Array) -> String:
 	elif hand[0][0] == hand[1][0] and hand[1][0] == hand[2][0]:
 		return "Three-of-a-kind!"
 	elif hand[0][0] == hand[1][0] or hand[1][0] == hand[2][0] or hand[0][0] == hand[2][0]:
+		GameManager.current_enemy.harm(1)
 		return "One Pair"
 		
 	

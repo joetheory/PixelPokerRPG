@@ -4,7 +4,7 @@ class_name StateMachine extends Node
 @onready var current_state : Node
 @onready var previous_state : Node
 var states : Dictionary = {}
-var debug = true
+var debug = false
 
 
 signal state_changed

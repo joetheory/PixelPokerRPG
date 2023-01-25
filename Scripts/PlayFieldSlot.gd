@@ -9,6 +9,7 @@ class_name PlayFieldSlot extends CardContainer
 @export var occupied : bool = false
 
 
+
 # - SIGNALS - ##################################################################
 
 

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c4t5p5rywpn8k"]
+
+[ext_resource type="Script" path="res://Resources/Enemies/Enemy.gd" id="1_ry4xs"]
+[ext_resource type="Texture2D" uid="uid://dv1bvr5knnqfa" path="res://icon.png" id="1_xkg8l"]
+
+[resource]
+script = ExtResource("1_ry4xs")
+enemy_name = "Panurge the Knave"
+enemy_sprite = ExtResource("1_xkg8l")
+enemy_max_health = 10
+enemy_current_health = 999
+enemy_max_hand_size = 3
