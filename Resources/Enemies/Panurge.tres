@@ -8,4 +8,5 @@ script = ExtResource("1_ry4xs")
 enemy_name = "Panurge the Knave"
 enemy_sprite = ExtResource("1_xkg8l")
 enemy_max_health = 10
+enemy_current_health = 999
 enemy_max_hand_size = 3

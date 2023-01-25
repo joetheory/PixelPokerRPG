@@ -1,32 +1,62 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgeo3cvm3k1al"]
+[gd_scene load_steps=12 format=3 uid="uid://dgeo3cvm3k1al"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_10g5l"]
 [ext_resource type="PackedScene" uid="uid://tky406nj70ma" path="res://Scenes/Deck.tscn" id="1_scm7q"]
+[ext_resource type="Texture2D" uid="uid://cbcmkged2cquv" path="res://Assets/image(2).png" id="2_6gwpm"]
 [ext_resource type="PackedScene" uid="uid://c4f4xnaluw210" path="res://Scenes/Playfield.tscn" id="3_ey3oo"]
 [ext_resource type="PackedScene" path="res://Scenes/PlayerHand.tscn" id="3_txo8x"]
 [ext_resource type="PackedScene" path="res://Scenes/OpponentHand.tscn" id="5_agxba"]
 [ext_resource type="Script" path="res://Components/StateMachine/StateMachine.gd" id="6_fwxpo"]
 [ext_resource type="Script" path="res://Scripts/Game/States/Initializing.gd" id="7_0r47b"]
 [ext_resource type="Script" path="res://Scripts/Game/States/PlayerTurn.gd" id="8_7c1p8"]
+[ext_resource type="LabelSettings" uid="uid://bd6cqq7myaruk" path="res://Resources/UI/character_text.tres" id="10_3rpxv"]
+[ext_resource type="Script" path="res://Scripts/UI.gd" id="10_gb32q"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_10g5l")
 
+[node name="Background" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+custom_minimum_size = Vector2(960, 540)
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_6gwpm")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 47.0
+offset_right = 329.0
+offset_bottom = 463.0
+color = Color(0, 0, 0, 0.639216)
+
 [node name="Deck" parent="." instance=ExtResource("1_scm7q")]
+visible = false
 z_index = 20
-position = Vector2(416, 104)
+position = Vector2(14, 14)
 
 [node name="OpponentHand" parent="." instance=ExtResource("5_agxba")]
 z_index = 20
-position = Vector2(187, -4)
+position = Vector2(177, -35)
 scale = Vector2(-1, -1)
 
 [node name="PlayerHand" parent="." instance=ExtResource("3_txo8x")]
 z_index = 20
-position = Vector2(181, 536)
+position = Vector2(181, 546)
 
 [node name="PlayField" parent="." instance=ExtResource("3_ey3oo")]
-position = Vector2(103, 136)
+position = Vector2(97, 142)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_fwxpo")
@@ -40,26 +70,99 @@ script = ExtResource("8_7c1p8")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchor_left = 0.5
-anchor_right = 1.0
-offset_left = 6.0
-grow_horizontal = 2
+anchors_preset = 0
+script = ExtResource("10_gb32q")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-offset_bottom = 23.0
-grow_horizontal = 2
+[node name="Control" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Player" type="Label" parent="UI/HBoxContainer"]
+[node name="Enemy" type="Label" parent="UI/Control"]
 layout_mode = 2
+offset_left = 46.0
+offset_top = 51.0
+offset_right = 328.0
+offset_bottom = 77.0
 size_flags_horizontal = 3
+text = "xxxxxxxxxxxxxxxxxx"
+label_settings = ExtResource("10_3rpxv")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="v" type="Label" parent="UI/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="EnemyHealth" type="ProgressBar" parent="UI/Control"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 48.0
+offset_top = 76.0
+offset_right = 327.0
+offset_bottom = 86.0
+step = 1.0
+value = 50.0
+show_percentage = false
 
-[node name="Enemy" type="Label" parent="UI/HBoxContainer"]
+[node name="EnemyHealthText" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 69.0
+offset_right = 210.0
+offset_bottom = 92.0
+text = "XX/XX"
+label_settings = ExtResource("10_3rpxv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player" type="Label" parent="UI/Control"]
 layout_mode = 2
+offset_left = 46.0
+offset_top = 429.0
+offset_right = 330.0
+offset_bottom = 455.0
+grow_horizontal = 0
+grow_vertical = 2
 size_flags_horizontal = 3
+text = "xxxxxxxxxxxxxxxx"
+label_settings = ExtResource("10_3rpxv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerHealth" type="ProgressBar" parent="UI/Control"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 48.0
+offset_top = 421.0
+offset_right = 327.0
+offset_bottom = 431.0
+step = 1.0
+value = 75.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerHealthText" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 414.0
+offset_right = 210.0
+offset_bottom = 437.0
+text = "XX/XX"
+label_settings = ExtResource("10_3rpxv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DamagePlayer" type="Button" parent="."]
+offset_left = 366.0
+offset_top = 390.0
+offset_right = 491.0
+offset_bottom = 421.0
+text = "Damage Player
+"
+
+[node name="DamageEnemy" type="Button" parent="."]
+offset_left = 364.0
+offset_top = 88.0
+offset_right = 489.0
+offset_bottom = 119.0
+text = "Damage Enemy"
+
+[connection signal="pressed" from="DamagePlayer" to="." method="_on_damage_player_pressed"]
+[connection signal="pressed" from="DamageEnemy" to="." method="_on_damage_enemy_pressed"]

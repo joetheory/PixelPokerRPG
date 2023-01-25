@@ -6,5 +6,6 @@
 script = ExtResource("1_q7awq")
 name = "Mage"
 description = "Low health but higher maximum hand size."
-base_health = 30
+max_health = 8
+current_health = 999
 maximum_hand_size = 6

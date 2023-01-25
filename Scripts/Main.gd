@@ -8,6 +8,8 @@ extends Node
 @onready var opponent_hand = $OpponentHand as OpponentHand
 @onready var containersToDealCardsTo : Array
 
+@onready var ENEMY : Enemy = GameManager.current_enemy 
+@onready var PLAYER : CharacterClass = GameManager.character_class
 
 # - SIGNALS - ##################################################################
 
@@ -15,12 +17,13 @@ extends Node
 
 func _ready() -> void:
 	Events.GameInitializing.connect(initializeGame)
-	opponent_hand.maximum_number_of_cards = GameManager.current_enemy.enemy_max_hand_size
-	player_hand.maximum_number_of_cards = PlayerManager.character_class.maximum_hand_size
-	$UI/HBoxContainer/Player.text = str(PlayerManager.character_class.name, ": ", PlayerManager.character_name)
-	$UI/HBoxContainer/v.text = str(" VERSUS ")
-	$UI/HBoxContainer/Enemy.text = str(GameManager.current_enemy.enemy_name)
-	
+	opponent_hand.maximum_number_of_cards = ENEMY.enemy_max_hand_size
+	player_hand.maximum_number_of_cards = PLAYER.maximum_hand_size
+	$UI/Control/Player.text = str(GameManager.character_name)
+	$UI/Control/Enemy.text = str(ENEMY.enemy_name)
+	ENEMY.enemy_current_health = ENEMY.enemy_max_health
+	PLAYER.current_health = PLAYER.max_health
+
 	
 func initializeGame() -> void:
 	deck.createNewDeck()
@@ -29,3 +32,10 @@ func initializeGame() -> void:
 	
 	containersToDealCardsTo = [$PlayerHand, $OpponentHand]
 	deck.dealNumberOfCardsToEachContainer(100, containersToDealCardsTo)
+
+func _on_damage_player_pressed() -> void:
+	PLAYER.current_health -= 1
+
+func _on_damage_enemy_pressed() -> void:
+	ENEMY.enemy_current_health -= 1
+

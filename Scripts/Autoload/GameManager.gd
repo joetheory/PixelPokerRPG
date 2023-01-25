@@ -1,4 +1,7 @@
 extends Node
 
 var current_enemy : Enemy
-var player : Player
+var character_name : String
+var character_class : CharacterClass
+
+

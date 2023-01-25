@@ -7,5 +7,6 @@
 script = ExtResource("1_on0bn")
 enemy_name = "Gargantua, father of Pantagruel"
 enemy_sprite = ExtResource("1_h6n8u")
-enemy_max_health = 70
-enemy_max_hand_size = 10
+enemy_max_health = 25
+enemy_current_health = 999
+enemy_max_hand_size = 7

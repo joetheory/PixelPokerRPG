@@ -63,6 +63,7 @@ func evaluatePokerHand(cards: Array) -> String:
 	elif hand[0][0] == hand[1][0] and hand[1][0] == hand[2][0]:
 		return "Three-of-a-kind!"
 	elif hand[0][0] == hand[1][0] or hand[1][0] == hand[2][0] or hand[0][0] == hand[2][0]:
+		GameManager.current_enemy.harm(1)
 		return "One Pair"
 		
 	

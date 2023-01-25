@@ -6,5 +6,6 @@
 script = ExtResource("1_vb6vh")
 name = "Rogue"
 description = "Average health. Always goes last."
-base_health = 40
+max_health = 10
+current_health = 999
 maximum_hand_size = 6

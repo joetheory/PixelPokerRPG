@@ -6,5 +6,6 @@
 script = ExtResource("1_lsdb5")
 name = "Warrior"
 description = "Higher maximum health"
-base_health = 50
+max_health = 15
+current_health = 999
 maximum_hand_size = 5

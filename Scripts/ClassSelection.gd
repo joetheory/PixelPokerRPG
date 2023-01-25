@@ -1,7 +1,8 @@
 extends Control
 
-@export var character_classes : Array[Resource]
-@export var enemies : Array[Resource]
+@export var character_classes : Array[CharacterClass]
+@export var enemies : Array[Enemy]
+
 
 # - VARIABLES - ################################################################
 
@@ -12,9 +13,7 @@ extends Control
 # - METHODS - ##################################################################
 
 func _ready() -> void:
-	
-	
-	
+
 	for character_class in character_classes:
 		var button_group = ButtonGroup.new()
 		var button = Button.new()
@@ -36,7 +35,7 @@ func _ready() -> void:
 	
 		
 func setCharacterClass(character_class : CharacterClass) -> void:
-	PlayerManager.character_class = character_class
+	GameManager.character_class = character_class
 	
 	
 func setEnemy(enemy : Enemy) -> void:
@@ -45,8 +44,8 @@ func setEnemy(enemy : Enemy) -> void:
 
 
 func _on_button_pressed() -> void:
-	if PlayerManager.character_class and GameManager.current_enemy:
-		PlayerManager.character_name = $CenterContainer/VBoxContainer/CharacterName.text
+	if GameManager.character_class and GameManager.current_enemy:
+		GameManager.character_name = $CenterContainer/VBoxContainer/CharacterName.text
 		get_tree().change_scene_to_file("res://Scenes/Main.tscn")
 	
 
