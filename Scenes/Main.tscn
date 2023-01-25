@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgeo3cvm3k1al"]
+[gd_scene load_steps=10 format=3 uid="uid://dgeo3cvm3k1al"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_10g5l"]
 [ext_resource type="PackedScene" uid="uid://tky406nj70ma" path="res://Scenes/Deck.tscn" id="1_scm7q"]
+[ext_resource type="Texture2D" uid="uid://qcmjroq23rw4" path="res://Assets/background-1.png" id="2_aawdp"]
 [ext_resource type="PackedScene" uid="uid://c4f4xnaluw210" path="res://Scenes/Playfield.tscn" id="3_ey3oo"]
 [ext_resource type="PackedScene" path="res://Scenes/PlayerHand.tscn" id="3_txo8x"]
 [ext_resource type="PackedScene" path="res://Scenes/OpponentHand.tscn" id="5_agxba"]
@@ -11,6 +12,18 @@
 
 [node name="Game" type="Node"]
 script = ExtResource("1_10g5l")
+
+[node name="Background-1" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.360784)
+position = Vector2(509, 298)
+scale = Vector2(0.721517, 0.669434)
+texture = ExtResource("2_aawdp")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-134, -194)
+scale = Vector2(0.840149, 1)
+color = Color(0, 0, 0, 0.627451)
+polygon = PackedVector2Array(213, 222, 746, 217, 751, 689, 216, 695)
 
 [node name="Deck" parent="." instance=ExtResource("1_scm7q")]
 z_index = 20
