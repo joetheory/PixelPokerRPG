@@ -11,6 +11,8 @@ extends Node
 @onready var ENEMY : Enemy = GameManager.current_enemy 
 @onready var PLAYER : CharacterClass = GameManager.character_class
 
+@onready var fsm : StateMachine = $StateMachine
+
 # - SIGNALS - ##################################################################
 
 # - METHODS - ##################################################################

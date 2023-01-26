@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpo5mvcpms08i"]
+[gd_scene load_steps=8 format=3 uid="uid://bpo5mvcpms08i"]
 
 [ext_resource type="Script" path="res://Scripts/PlayFieldSlot.gd" id="1_fknh8"]
 [ext_resource type="Script" path="res://Components/StateMachine/StateMachine.gd" id="2_dqhb4"]
@@ -6,7 +6,17 @@
 [ext_resource type="Script" path="res://Scripts/PlayField/CardSlot/Droppable.gd" id="4_h0icq"]
 [ext_resource type="Script" path="res://Scripts/PlayField/CardSlot/Selected.gd" id="5_37y2n"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0vvt"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tss87"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l68qs"]
 
 [node name="PlayFieldSlot" type="Node2D" node_paths=PackedStringArray("fsm", "node_to_hold_cards", "snap_target") groups=["PlayFieldSlots"]]
 script = ExtResource("1_fknh8")
@@ -22,7 +32,15 @@ droppable = true
 [node name="SnapTarget" type="Marker2D" parent="."]
 gizmo_extents = 25.0
 
+[node name="Panel" type="Panel" parent="."]
+offset_left = -40.0
+offset_top = -52.0
+offset_right = 40.0
+offset_bottom = 53.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tss87")
+
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -42,7 +60,7 @@ scale = Vector2(0.5, 0.5)
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("RectangleShape2D_u0vvt")
+shape = SubResource("RectangleShape2D_l68qs")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_dqhb4")

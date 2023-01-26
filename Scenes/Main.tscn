@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgeo3cvm3k1al"]
+[gd_scene load_steps=13 format=3 uid="uid://dgeo3cvm3k1al"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_10g5l"]
 [ext_resource type="PackedScene" uid="uid://tky406nj70ma" path="res://Scenes/Deck.tscn" id="1_scm7q"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Game/States/PlayerTurn.gd" id="8_7c1p8"]
 [ext_resource type="LabelSettings" uid="uid://bd6cqq7myaruk" path="res://Resources/UI/character_text.tres" id="10_3rpxv"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="10_gb32q"]
+[ext_resource type="Script" path="res://Scripts/Game/States/EnemyTurn.gd" id="10_hfetu"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_10g5l")
@@ -67,6 +68,11 @@ script = ExtResource("7_0r47b")
 
 [node name="PlayerTurn" type="Node" parent="StateMachine"]
 script = ExtResource("8_7c1p8")
+
+[node name="EnemyTurn" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy_hand", "play_field")]
+script = ExtResource("10_hfetu")
+enemy_hand = NodePath("../../OpponentHand")
+play_field = NodePath("../../PlayField")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -166,5 +172,6 @@ offset_right = 489.0
 offset_bottom = 119.0
 text = "Damage Enemy"
 
+[connection signal="child_exiting_tree" from="OpponentHand" to="OpponentHand" method="_on_child_exiting_tree"]
 [connection signal="pressed" from="DamagePlayer" to="." method="_on_damage_player_pressed"]
 [connection signal="pressed" from="DamageEnemy" to="." method="_on_damage_enemy_pressed"]

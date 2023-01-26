@@ -69,23 +69,4 @@ func evaluatePokerHand(cards: Array) -> String:
 		
 	
 	return "Garbage"
-		
-
-#if all suits match
-	#if all distinct consecutive ranks
-		#is straight flush
-	#else is flush
-#if ranks are distinct and consecutive
-	#is straight
-#if any rank occurs 4 times
-	#is four-of-a-kind
-#if any rank occurs 3 times
-	#if any other rank occurs 2 times
-		#is full house
-	#else
-		#is three-of-a-kind
-#if any rank occurs 2 times
-	#if any other rank occurs 2 times
-		#is two pair
-	#else is 1 pair
-					
+	
