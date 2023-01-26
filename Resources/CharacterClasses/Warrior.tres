@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d31xad4af2s7o"]
+[gd_resource type="Resource" script_class="CharacterClass" load_steps=2 format=3 uid="uid://d31xad4af2s7o"]
 
 [ext_resource type="Script" path="res://Resources/CharacterClasses/CharacterClass.gd" id="1_lsdb5"]
 
 [resource]
 script = ExtResource("1_lsdb5")
 name = "Warrior"
-description = "Higher maximum health"
+description = "The hearty Warrior starts the match with more health. Critical damage is also increased."
 max_health = 15
 current_health = 999
 maximum_hand_size = 5

@@ -150,6 +150,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DamagePlayer" type="Button" parent="."]
+visible = false
 offset_left = 366.0
 offset_top = 390.0
 offset_right = 491.0
@@ -158,6 +159,7 @@ text = "Damage Player
 "
 
 [node name="DamageEnemy" type="Button" parent="."]
+visible = false
 offset_left = 364.0
 offset_top = 88.0
 offset_right = 489.0

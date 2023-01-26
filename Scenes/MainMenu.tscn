@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi5b15t3e44ou"]
+[gd_scene load_steps=4 format=3 uid="uid://bi5b15t3e44ou"]
 
+[ext_resource type="Theme" uid="uid://dafx8gbagwnyb" path="res://Resources/UI/GameSelectionTheme.tres" id="1_dxtqy"]
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_oyvj3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ia8vi"]
@@ -12,12 +13,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_dxtqy")
 script = ExtResource("1_oyvj3")
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 initial_position = 1
 title = "Are you sure?"
-current_screen = -2
 ok_button_text = "Yes"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -86,7 +87,6 @@ text = "Start"
 layout_mode = 2
 text = "Quit"
 
-[connection signal="cancelled" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_cancelled"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/New Game" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

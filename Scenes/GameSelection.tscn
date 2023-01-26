@@ -1,14 +1,58 @@
-[gd_scene load_steps=8 format=3 uid="uid://hhl5khbuk4gt"]
+[gd_scene load_steps=18 format=3 uid="uid://hhl5khbuk4gt"]
 
 [ext_resource type="Script" path="res://Scripts/ClassSelection.gd" id="1_j0mt3"]
+[ext_resource type="Theme" uid="uid://dafx8gbagwnyb" path="res://Resources/UI/GameSelectionTheme.tres" id="1_k057d"]
 [ext_resource type="Resource" uid="uid://bgi0me8t1gmcp" path="res://Resources/CharacterClasses/Mage.tres" id="2_pegj5"]
 [ext_resource type="Resource" uid="uid://d31xad4af2s7o" path="res://Resources/CharacterClasses/Warrior.tres" id="3_lix6h"]
 [ext_resource type="Resource" uid="uid://brwjfyoinwg02" path="res://Resources/CharacterClasses/Rogue.tres" id="4_ckpnw"]
 [ext_resource type="Resource" uid="uid://c4t5p5rywpn8k" path="res://Resources/Enemies/Panurge.tres" id="5_wdr7t"]
 [ext_resource type="Resource" uid="uid://d3fobq5h4x3e8" path="res://Resources/Enemies/Gargantua.tres" id="6_37nhm"]
+[ext_resource type="Texture2D" uid="uid://bj2ubrbpp4e7h" path="res://Assets/tavern.png" id="7_fiuw5"]
+[ext_resource type="FontFile" uid="uid://dlepcqr54ggjv" path="res://Resources/snarf.ttf" id="8_xpalp"]
+[ext_resource type="LabelSettings" uid="uid://bd6cqq7myaruk" path="res://Resources/UI/character_text.tres" id="9_j71ei"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bdndc"]
+font = ExtResource("8_xpalp")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvofx"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.970817, 0.765743, 0.737715, 0.207843)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svivh"]
+bg_color = Color(1, 0, 0.14902, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0, 0, 1)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_ivkud"]
 resource_name = "Submit"
+
+[sub_resource type="Gradient" id="Gradient_lcdka"]
+offsets = PackedFloat32Array(0, 0.748768, 1)
+colors = PackedColorArray(1, 0.854902, 0, 1, 1, 0, 0, 1, 0.215451, 0.0110865, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0hoaa"]
+gradient = SubResource("Gradient_lcdka")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_77kmf"]
+emission_shape = 3
+emission_box_extents = Vector3(50, 20, 1)
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, -300, 0)
+initial_velocity_max = 31.01
+scale_min = 4.0
+scale_max = 6.0
+color_ramp = SubResource("GradientTexture1D_0hoaa")
+turbulence_enabled = true
 
 [node name="ClassSelection" type="Control"]
 layout_mode = 3
@@ -17,9 +61,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_k057d")
 script = ExtResource("1_j0mt3")
 character_classes = [ExtResource("2_pegj5"), ExtResource("3_lix6h"), ExtResource("4_ckpnw")]
 enemies = [ExtResource("5_wdr7t"), ExtResource("6_37nhm")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 964.0
+offset_bottom = 542.0
+texture = ExtResource("7_fiuw5")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 251.0
+offset_top = -25.0
+offset_right = 689.0
+offset_bottom = 558.0
+color = Color(0, 0, 0, 0.729412)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -28,8 +88,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -2.0
-offset_bottom = 2.0
+offset_left = -226.0
+offset_top = -270.0
+offset_right = 209.0
+offset_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -39,12 +101,23 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "What will you be called?"
+label_settings = SubResource("LabelSettings_bdndc")
+horizontal_alignment = 1
 
 [node name="CharacterName" type="LineEdit" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_k057d")
+theme_override_colors/font_color = Color(1, 0, 0.0156863, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nvofx")
 text = "Jaboo the Tardy"
 placeholder_text = "Enter a name!"
+alignment = 1
 max_length = 26
+caret_blink = true
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="ClassOptions" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -52,7 +125,27 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ClassOptions"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "Choose a class for your character."
+text = "Choose a class for your character"
+label_settings = ExtResource("9_j71ei")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer/ClassOptions"]
+layout_mode = 2
+theme = ExtResource("1_k057d")
+columns = 2
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ClassDescription" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_constants/line_separation = 4
+theme_override_fonts/normal_font = ExtResource("8_xpalp")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "sdasdasds"
+scroll_active = false
 
 [node name="EnemyOptions" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -61,21 +154,28 @@ layout_mode = 2
 layout_mode = 2
 text = "Choose an enemy to battle."
 
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer/EnemyOptions"]
+layout_mode = 2
+theme = ExtResource("1_k057d")
+
 [node name="Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -45.0
-offset_top = -31.0
-offset_right = 45.0
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 0
+offset_left = 427.0
+offset_top = 479.0
+offset_right = 517.0
+offset_bottom = 510.0
 size_flags_vertical = 10
+theme = ExtResource("1_k057d")
+theme_override_constants/h_separation = 0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_svivh")
 button_group = SubResource("ButtonGroup_ivkud")
-text = "Play Game
-"
+text = "Play Game"
+icon_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(828, 296)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_77kmf")
+trail_lifetime = 1.65
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

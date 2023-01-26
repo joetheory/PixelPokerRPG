@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://brwjfyoinwg02"]
+[gd_resource type="Resource" script_class="CharacterClass" load_steps=2 format=3 uid="uid://brwjfyoinwg02"]
 
 [ext_resource type="Script" path="res://Resources/CharacterClasses/CharacterClass.gd" id="1_vb6vh"]
 
 [resource]
 script = ExtResource("1_vb6vh")
 name = "Rogue"
-description = "Average health. Always goes last."
+description = "Rogues are crafty and can do extra damage by playing any Club cards."
 max_health = 10
 current_health = 999
-maximum_hand_size = 6
+maximum_hand_size = 5

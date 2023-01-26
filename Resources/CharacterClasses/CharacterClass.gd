@@ -1,7 +1,7 @@
 class_name CharacterClass extends Resource
 
 @export var name : String
-@export var description : String
+@export_multiline var description : String
 @export var max_health : int
 @export var current_health : int = 999:
 	set(value):

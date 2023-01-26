@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cc32v4x436jhe"]
+
+[ext_resource type="FontFile" uid="uid://dlepcqr54ggjv" path="res://Resources/snarf.ttf" id="1_c1xtm"]
+
+[node name="ClassSelectionButton" type="Button"]
+theme_override_fonts/font = ExtResource("1_c1xtm")

@@ -2,7 +2,7 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://h182b0g2awok"
+uid="uid://dlepcqr54ggjv"
 path="res://.godot/imported/snarf.ttf-a81f06e00b6537a50114b72eeaceeb76.fontdata"
 
 [deps]
@@ -26,8 +26,14 @@ oversampling=0.0
 Fallbacks=null
 fallbacks=[]
 Compress=null
-compress=true
-preload=[]
+compress=false
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0),
+"variation_embolden": 0.0
+}]
 language_support={}
 script_support={}
 opentype_features={}
