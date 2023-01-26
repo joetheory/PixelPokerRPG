@@ -2,13 +2,18 @@ extends BaseState
 
 @export var enemy_hand : OpponentHand
 @export var play_field : PlayField
+@export var deck : Deck
 
 func enter() -> void:
 	print("It is now the Enemy's turn")
 	var card_to_play : Card = await selectCardToPlay()
 	var slot_to_place : PlayFieldSlot = await chooseRandomSlot()
 	card_to_play.reparent(slot_to_place.node_to_hold_cards, false)
+	card_to_play.rotation = 0
+	card_to_play.position = Vector2.ZERO
+	card_to_play.scale = Vector2.ONE
 	enemy_hand.redrawVisuals()
+	deck.dealNumberOfCardsToEachContainer(1,[enemy_hand])
 	fsm.change_to(fsm.get_node("PlayerTurn"))
 
 func selectCardToPlay() -> Card:

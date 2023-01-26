@@ -66,13 +66,15 @@ initial_state = NodePath("Initializing")
 [node name="Initializing" type="Node" parent="StateMachine"]
 script = ExtResource("7_0r47b")
 
-[node name="PlayerTurn" type="Node" parent="StateMachine"]
+[node name="PlayerTurn" type="Node" parent="StateMachine" node_paths=PackedStringArray("deck")]
 script = ExtResource("8_7c1p8")
+deck = NodePath("../../Deck")
 
-[node name="EnemyTurn" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy_hand", "play_field")]
+[node name="EnemyTurn" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy_hand", "play_field", "deck")]
 script = ExtResource("10_hfetu")
 enemy_hand = NodePath("../../OpponentHand")
 play_field = NodePath("../../PlayField")
+deck = NodePath("../../Deck")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
