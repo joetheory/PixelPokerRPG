@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/PlayField/CardSlot/Droppable.gd" id="4_h0icq"]
 [ext_resource type="Script" path="res://Scripts/PlayField/CardSlot/Selected.gd" id="5_37y2n"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybp0m"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1xbw"]
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -16,7 +16,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt6eo"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6brrt"]
 
 [node name="PlayFieldSlot" type="Node2D" node_paths=PackedStringArray("fsm", "node_to_hold_cards", "snap_target") groups=["PlayFieldSlots"]]
 script = ExtResource("1_fknh8")
@@ -37,7 +37,7 @@ offset_left = -40.0
 offset_top = -52.0
 offset_right = 40.0
 offset_bottom = 53.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ybp0m")
+theme_override_styles/panel = SubResource("StyleBoxFlat_f1xbw")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -60,7 +60,7 @@ scale = Vector2(0.5, 0.5)
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("RectangleShape2D_rt6eo")
+shape = SubResource("RectangleShape2D_6brrt")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_dqhb4")

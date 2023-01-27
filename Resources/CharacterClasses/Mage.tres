@@ -9,3 +9,4 @@ description = "The Mage has lower starting health but a slightly increased hand 
 max_health = 8
 current_health = 999
 maximum_hand_size = 6
+multi_damage = 2

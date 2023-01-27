@@ -14,8 +14,16 @@ class_name PlayerHand extends CardContainer
 
 func _ready() -> void:
 	Events.CardBackAtHome.connect(redrawVisuals)
+	Events.EnemyTurn.connect(disableSelection)
+	Events.PlayerTurn.connect(enableSelection)
 	#Events.emit_signal("CardBackAtHome")
 	
+func disableSelection() ->void:
+	node_to_hold_cards.get_children().map(func(card): card.selectable = false)
+	
+func enableSelection() ->void:
+	node_to_hold_cards.get_children().map(func(card): card.selectable = true)
+
 func redrawVisuals() -> void:
 	
 	var currentCardNodes = self.node_to_hold_cards.get_children()

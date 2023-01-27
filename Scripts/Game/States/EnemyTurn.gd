@@ -6,6 +6,8 @@ extends BaseState
 
 func enter() -> void:
 	print("It is now the Enemy's turn")
+	Events.emit_signal("EnemyTurn")
+	await get_tree().create_timer(randf_range(2,4), true,true).timeout
 	var card_to_play : Card = await selectCardToPlay()
 	var slot_to_place : PlayFieldSlot = await chooseRandomSlot()
 	card_to_play.reparent(slot_to_place.node_to_hold_cards, false)
@@ -14,6 +16,7 @@ func enter() -> void:
 	card_to_play.scale = Vector2.ONE
 	enemy_hand.redrawVisuals()
 	deck.dealNumberOfCardsToEachContainer(1,[enemy_hand])
+	
 	fsm.change_to(fsm.get_node("PlayerTurn"))
 
 func selectCardToPlay() -> Card:
@@ -24,5 +27,4 @@ func selectCardToPlay() -> Card:
 func chooseRandomSlot() -> PlayFieldSlot:
 	var available_slots = play_field.get_node("Slots").get_children().filter(func(slot : PlayFieldSlot): if not slot.occupied: return slot)
 	var slot_to_play_to = available_slots.pick_random()
-	print(slot_to_play_to)
 	return slot_to_play_to

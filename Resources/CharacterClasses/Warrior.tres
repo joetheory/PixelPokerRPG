@@ -5,7 +5,8 @@
 [resource]
 script = ExtResource("1_lsdb5")
 name = "Warrior"
-description = "The hearty Warrior starts the match with more health. Critical damage is also increased."
+description = "The hearty Warrior starts the match with more health. "
 max_health = 15
 current_health = 999
 maximum_hand_size = 5
+multi_damage = 1

@@ -9,3 +9,4 @@ description = "Rogues are crafty and can do extra damage by playing any Club car
 max_health = 10
 current_health = 999
 maximum_hand_size = 5
+multi_damage = 1

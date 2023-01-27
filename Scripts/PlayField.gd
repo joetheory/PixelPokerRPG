@@ -6,6 +6,7 @@ class_name PlayField extends Node2D
 @export var play_field_rows : int = 3
 @onready var play_field_slot_scene := preload("res://Scenes/PlayFieldSlot.tscn")
 @export var game : Node
+@export var battle_status : RichTextLabel
 # - SIGNALS - ##################################################################
 
 
@@ -14,7 +15,7 @@ class_name PlayField extends Node2D
 func _ready() -> void:
 
 	Events.CardPlacedOnPlayField.connect(checkHandValue)
-	
+
 	for column_number in play_field_columns:
 		for row_number in play_field_rows:
 			var new_play_field_slot = play_field_slot_scene.instantiate()
@@ -27,8 +28,15 @@ func _ready() -> void:
 
 
 func checkHandValue(slot: PlayFieldSlot) -> void:
-	print("Card placed at ", slot)
+	var multi : bool = false
+	if GameManager.character_class.name == "Rogue" and slot.node_to_hold_cards.get_child(0).suit == 4:
+		GameManager.current_enemy.harm(1)
+		battle_status.append_text(str("\n",GameManager.character_name," CLUBBED ", GameManager.current_enemy.enemy_name, " for 1 EXTRA damage!"))
+		
 	for group in slot.get_groups():
+#		if slot.get_groups().size() == 2:
+#			multi = true 
+#			print("multi")
 		if group != "PlayFieldSlots":
 			var cards = []
 			for node in get_tree().get_nodes_in_group(group):
@@ -36,10 +44,37 @@ func checkHandValue(slot: PlayFieldSlot) -> void:
 				if node.occupied:
 					cards.append(node.node_to_hold_cards.get_child(0))
 			if(cards.size() >= 3):
+				var damage = evaluatePokerHand(cards) 
+				
+				var text_to_add
 				if game.fsm.current_state == game.fsm.get_node("PlayerTurn"):
-					GameManager.current_enemy.harm(evaluatePokerHand(cards))
+					if damage > 0:
+						text_to_add = str(GameManager.character_name," attacked ", GameManager.current_enemy.enemy_name, " for ", damage, " damage!")
+					else:
+						text_to_add = str(GameManager.character_name," missed!")
+					if multi: 
+						damage += GameManager.character_class.multi_damage
+						battle_status.append_text(str("\n",GameManager.character_name," crit for ", GameManager.character_class.multi_damage ," EXTRA damage!"))						
+					GameManager.current_enemy.harm(damage)
 				else:
-					GameManager.character_class.harm(evaluatePokerHand(cards))
+					if damage > 0:
+						text_to_add = str(GameManager.current_enemy.enemy_name," attacked ", GameManager.character_name , " for ", damage, " damage!")
+					else:
+						text_to_add = str(GameManager.current_enemy.enemy_name," missed!")
+					if multi: 
+						damage += GameManager.current_enemy.enemy_multi_damage
+						battle_status.append_text(str("\n",GameManager.current_enemy.enemy_name," crit for ", GameManager.current_enemy.enemy_multi_damage ," EXTRA damage!"))						
+					GameManager.character_class.harm(damage)
+				battle_status.append_text(str("\n - ",text_to_add))
+	var avaliable_slots = self.get_node("Slots").get_children().filter(func(slot : PlayFieldSlot): if not slot.occupied: return slot)
+	if avaliable_slots.is_empty():
+		battle_status.append_text(str("\n - Board is full, resetting."))
+		for node in self.get_node("Slots").get_children():
+			node.queue_free()
+		await get_tree().create_timer(randf_range(2,3), true,true).timeout
+		self._ready()
+				
+			
 				
 
 func evaluatePokerHand(cards: Array) -> int:

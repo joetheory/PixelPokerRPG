@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgeo3cvm3k1al"]
+[gd_scene load_steps=16 format=3 uid="uid://dgeo3cvm3k1al"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_10g5l"]
 [ext_resource type="PackedScene" uid="uid://tky406nj70ma" path="res://Scenes/Deck.tscn" id="1_scm7q"]
 [ext_resource type="Texture2D" uid="uid://cbcmkged2cquv" path="res://Assets/image(2).png" id="2_6gwpm"]
 [ext_resource type="PackedScene" uid="uid://c4f4xnaluw210" path="res://Scenes/Playfield.tscn" id="3_ey3oo"]
-[ext_resource type="PackedScene" path="res://Scenes/PlayerHand.tscn" id="3_txo8x"]
+[ext_resource type="PackedScene" uid="uid://etegdnuqfg14" path="res://Scenes/PlayerHand.tscn" id="3_txo8x"]
 [ext_resource type="PackedScene" path="res://Scenes/OpponentHand.tscn" id="5_agxba"]
 [ext_resource type="Script" path="res://Components/StateMachine/StateMachine.gd" id="6_fwxpo"]
 [ext_resource type="Script" path="res://Scripts/Game/States/Initializing.gd" id="7_0r47b"]
@@ -12,6 +12,13 @@
 [ext_resource type="LabelSettings" uid="uid://bd6cqq7myaruk" path="res://Resources/UI/character_text.tres" id="10_3rpxv"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="10_gb32q"]
 [ext_resource type="Script" path="res://Scripts/Game/States/EnemyTurn.gd" id="10_hfetu"]
+[ext_resource type="Theme" uid="uid://dafx8gbagwnyb" path="res://Resources/UI/GameSelectionTheme.tres" id="12_8r0bo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51273"]
+bg_color = Color(0, 0, 0, 0.607843)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kn4gh"]
+bg_color = Color(0, 0, 0, 0.811765)
 
 [node name="Game" type="Node"]
 script = ExtResource("1_10g5l")
@@ -56,9 +63,10 @@ scale = Vector2(-1, -1)
 z_index = 20
 position = Vector2(181, 546)
 
-[node name="PlayField" parent="." node_paths=PackedStringArray("game") instance=ExtResource("3_ey3oo")]
+[node name="PlayField" parent="." node_paths=PackedStringArray("game", "battle_status") instance=ExtResource("3_ey3oo")]
 position = Vector2(97, 142)
 game = NodePath("..")
+battle_status = NodePath("../UI/Control/BatteStatus")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_fwxpo")
@@ -86,6 +94,17 @@ script = ExtResource("10_gb32q")
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="BatteStatus" type="RichTextLabel" parent="UI/Control"]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 189.0
+offset_right = 927.0
+offset_bottom = 340.0
+theme = ExtResource("12_8r0bo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_51273")
+scroll_following = true
+shortcut_keys_enabled = false
 
 [node name="Enemy" type="Label" parent="UI/Control"]
 layout_mode = 2
@@ -175,14 +194,74 @@ offset_right = 489.0
 offset_bottom = 119.0
 text = "Damage Enemy"
 
-[node name="Button" type="Button" parent="."]
-offset_left = 835.0
-offset_top = 23.0
-offset_right = 929.0
-offset_bottom = 54.0
+[node name="LoseScreen" type="Panel" parent="."]
+visible = false
+offset_right = 960.0
+offset_bottom = 546.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kn4gh")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LoseScreen"]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 199.0
+offset_right = 645.0
+offset_bottom = 277.0
+theme = ExtResource("12_8r0bo")
+theme_override_font_sizes/normal_font_size = 50
+text = "YOU DIED"
+
+[node name="Start" type="Button" parent="LoseScreen"]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 290.0
+offset_right = 530.0
+offset_bottom = 321.0
 text = "Start Again"
+
+[node name="Exit" type="Button" parent="LoseScreen"]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 340.0
+offset_right = 530.0
+offset_bottom = 371.0
+text = "Exit Game"
+
+[node name="WinScreen" type="Panel" parent="."]
+visible = false
+offset_right = 960.0
+offset_bottom = 546.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kn4gh")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WinScreen"]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 199.0
+offset_right = 645.0
+offset_bottom = 277.0
+theme = ExtResource("12_8r0bo")
+theme_override_font_sizes/normal_font_size = 50
+text = "YOU WIN!"
+
+[node name="Start" type="Button" parent="WinScreen"]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 290.0
+offset_right = 530.0
+offset_bottom = 321.0
+text = "Start Again"
+
+[node name="Exit" type="Button" parent="WinScreen"]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 340.0
+offset_right = 530.0
+offset_bottom = 371.0
+text = "Exit Game"
 
 [connection signal="child_exiting_tree" from="OpponentHand" to="OpponentHand" method="_on_child_exiting_tree"]
 [connection signal="pressed" from="DamagePlayer" to="." method="_on_damage_player_pressed"]
 [connection signal="pressed" from="DamageEnemy" to="." method="_on_damage_enemy_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="LoseScreen/Start" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="LoseScreen/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="WinScreen/Start" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="WinScreen/Exit" to="." method="_on_exit_pressed"]
