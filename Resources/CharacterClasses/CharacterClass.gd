@@ -10,3 +10,9 @@ class_name CharacterClass extends Resource
 	get:
 		return current_health
 @export var maximum_hand_size : int
+
+func harm(value:int) -> void:
+	current_health -= value
+
+func heal(value:int) -> void:
+	current_health += value

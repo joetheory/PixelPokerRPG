@@ -56,8 +56,9 @@ scale = Vector2(-1, -1)
 z_index = 20
 position = Vector2(181, 546)
 
-[node name="PlayField" parent="." instance=ExtResource("3_ey3oo")]
+[node name="PlayField" parent="." node_paths=PackedStringArray("game") instance=ExtResource("3_ey3oo")]
 position = Vector2(97, 142)
+game = NodePath("..")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_fwxpo")
@@ -174,6 +175,14 @@ offset_right = 489.0
 offset_bottom = 119.0
 text = "Damage Enemy"
 
+[node name="Button" type="Button" parent="."]
+offset_left = 835.0
+offset_top = 23.0
+offset_right = 929.0
+offset_bottom = 54.0
+text = "Start Again"
+
 [connection signal="child_exiting_tree" from="OpponentHand" to="OpponentHand" method="_on_child_exiting_tree"]
 [connection signal="pressed" from="DamagePlayer" to="." method="_on_damage_player_pressed"]
 [connection signal="pressed" from="DamageEnemy" to="." method="_on_damage_enemy_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

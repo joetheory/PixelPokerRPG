@@ -41,3 +41,8 @@ func _on_damage_player_pressed() -> void:
 func _on_damage_enemy_pressed() -> void:
 	ENEMY.enemy_current_health -= 1
 
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/GameSelection.tscn")
+	pass # Replace with function body.
