@@ -6,3 +6,6 @@ signal CardBackAtHome
 signal CardPlacedOnPlayField(slot)
 signal GameInitializing
 
+signal PlayerTurn
+signal EnemyTurn
+

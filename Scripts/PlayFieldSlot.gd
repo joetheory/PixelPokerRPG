@@ -1,3 +1,4 @@
+@tool
 class_name PlayFieldSlot extends CardContainer
 
 # - VARIABLES - ################################################################
@@ -5,7 +6,7 @@ class_name PlayFieldSlot extends CardContainer
 @export var highlight_color : Color
 @export var droppable_color : Color
 @export var fsm : StateMachine 
-@onready var color_rect := $ColorRect
+@onready var color_rect := $Panel
 @export var occupied : bool = false
 
 
@@ -18,6 +19,7 @@ func _ready() -> void:
 	Events.CardSelected.connect(highlightSlot)
 	Events.CardReleased.connect(dehighlightSlot)
 	$Hitbox/HitboxShape.shape.size = $ColorRect.get_size()/2
+	var panel : Panel = $Panel
 
 func highlightSlot() -> void:
 	if node_to_hold_cards.get_child_count() == 0:

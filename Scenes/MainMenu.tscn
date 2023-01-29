@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi5b15t3e44ou"]
+[gd_scene load_steps=6 format=3 uid="uid://bi5b15t3e44ou"]
 
+[ext_resource type="Theme" uid="uid://dafx8gbagwnyb" path="res://Resources/UI/GameSelectionTheme.tres" id="1_dxtqy"]
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_oyvj3"]
+[ext_resource type="Texture2D" uid="uid://cp0egwsfpu4sn" path="res://Assets/image(3).png" id="3_7216h"]
+[ext_resource type="Texture2D" uid="uid://b1h42r4im3qnx" path="res://Assets/Evilmost_Wizardo_a_logo_for_a_game_called_PixelPokerRPG_playing_8208f47d-53a3-470b-a950-307ddf932839-removebg-preview.png" id="4_wpk3q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ia8vi"]
 font_size = 24
@@ -12,37 +15,50 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_dxtqy")
 script = ExtResource("1_oyvj3")
+
+[node name="Image(3)" type="Sprite2D" parent="."]
+position = Vector2(485, 272)
+scale = Vector2(0.65625, 0.570313)
+texture = ExtResource("3_7216h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 2.0
+offset_right = 649.0
+offset_bottom = 547.0
+color = Color(0, 0, 0, 0.443137)
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 initial_position = 1
 title = "Are you sure?"
-current_screen = -2
 ok_button_text = "Yes"
 
+[node name="EvilmostWizardoALogoForAGameCalledPixelPokerRpgPlaying8208f47d-53a3-470b-a950-307Ddf932839-removebg-preview" type="Sprite2D" parent="."]
+position = Vector2(496, 221)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("4_wpk3q")
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 446.0
+offset_top = 399.0
+offset_right = 549.0
+offset_bottom = 473.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Main Menu"
-
 [node name="New Game" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Start"
 
 [node name="Exit" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Quit"
 
 [node name="ExitConfimation" type="CenterContainer" parent="."]
@@ -86,7 +102,6 @@ text = "Start"
 layout_mode = 2
 text = "Quit"
 
-[connection signal="cancelled" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_cancelled"]
 [connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/New Game" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

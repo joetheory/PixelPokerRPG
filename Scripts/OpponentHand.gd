@@ -17,15 +17,21 @@ func _ready() -> void:
 
 
 func redrawVisuals() -> void:
-	var currentCardNodes = node_to_hold_cards.get_children()
+	
+	var currentCardNodes = self.node_to_hold_cards.get_children()
+	card_spread_factor = (currentCardNodes.size()+1/50) * 10
+
 	for card in currentCardNodes:
 		var hand_ratio : float = .5
 		if currentCardNodes.size() > 1:
 			hand_ratio = float(card.get_index())/float(node_to_hold_cards.get_child_count()-1)	
 		card.global_position.x = global_position.x + card_spread_curve.sample(hand_ratio) * card_spread_factor
-		card.global_position.y = global_position.y - card_arc_curve.sample(hand_ratio) * -card_curve_factor
+		card.global_position.y = global_position.y - -card_arc_curve.sample(hand_ratio) * card_curve_factor
 		card.rotation = -card_tilt_curve.sample(hand_ratio) 
 
-
 func _on_child_entered_tree(node: Node) -> void:
+	redrawVisuals()
+
+
+func _on_child_exiting_tree(node: Node) -> void:
 	redrawVisuals()

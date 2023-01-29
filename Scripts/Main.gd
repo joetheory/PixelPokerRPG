@@ -11,12 +11,16 @@ extends Node
 @onready var ENEMY : Enemy = GameManager.current_enemy 
 @onready var PLAYER : CharacterClass = GameManager.character_class
 
+@onready var fsm : StateMachine = $StateMachine
+
 # - SIGNALS - ##################################################################
 
 # - METHODS - ##################################################################
 
 func _ready() -> void:
 	Events.GameInitializing.connect(initializeGame)
+	GameManager.character_class.LOSER.connect(showLoseScreen)
+	GameManager.current_enemy.ENEMYDEAD.connect(showWinScreen)
 	opponent_hand.maximum_number_of_cards = ENEMY.enemy_max_hand_size
 	player_hand.maximum_number_of_cards = PLAYER.maximum_hand_size
 	$UI/Control/Player.text = str(GameManager.character_name)
@@ -33,9 +37,19 @@ func initializeGame() -> void:
 	containersToDealCardsTo = [$PlayerHand, $OpponentHand]
 	deck.dealNumberOfCardsToEachContainer(100, containersToDealCardsTo)
 
-func _on_damage_player_pressed() -> void:
-	PLAYER.current_health -= 1
 
-func _on_damage_enemy_pressed() -> void:
-	ENEMY.enemy_current_health -= 1
+func showLoseScreen() -> void:
+	$LoseScreen.visible = true
 
+func showWinScreen() -> void:
+	$WinScreen.visible = true
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/GameSelection.tscn")
+	pass # Replace with function body.
+
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()
+	pass # Replace with function body.
