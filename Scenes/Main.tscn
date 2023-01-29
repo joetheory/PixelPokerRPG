@@ -41,6 +41,27 @@ size_flags_vertical = 3
 texture = ExtResource("2_6gwpm")
 expand_mode = 1
 
+[node name="ColorRect2" type="ColorRect" parent="Background"]
+offset_left = 366.0
+offset_top = 51.0
+offset_right = 929.0
+offset_bottom = 211.0
+color = Color(0, 0, 0, 0.639216)
+
+[node name="Enemy" type="Label" parent="Background"]
+offset_left = 383.0
+offset_top = 69.0
+offset_right = 917.0
+offset_bottom = 199.0
+size_flags_horizontal = 3
+text = " - Place cards from your hand to complete small poker hands and do damge to your opponent
+
+ - Only completed rows will count
+
+ - completing multiple rows at once will score both"
+label_settings = ExtResource("10_3rpxv")
+autowrap_mode = 2
+
 [node name="ColorRect" type="ColorRect" parent="Background"]
 layout_mode = 0
 offset_left = 45.0
@@ -97,10 +118,10 @@ offset_bottom = 40.0
 
 [node name="BatteStatus" type="RichTextLabel" parent="UI/Control"]
 layout_mode = 0
-offset_left = 364.0
-offset_top = 189.0
-offset_right = 927.0
-offset_bottom = 340.0
+offset_left = 366.0
+offset_top = 321.0
+offset_right = 929.0
+offset_bottom = 472.0
 theme = ExtResource("12_8r0bo")
 theme_override_styles/normal = SubResource("StyleBoxFlat_51273")
 scroll_following = true
