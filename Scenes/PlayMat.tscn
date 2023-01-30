@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=3 uid="uid://cylsbeshu2wv3"]
+
+[ext_resource type="PackedScene" uid="uid://b27uve0s3rmg3" path="res://Scenes/PlayMatSlot.tscn" id="1_0a40n"]
+[ext_resource type="PackedScene" uid="uid://ca1vau16jppft" path="res://Scenes/PlayingCard.tscn" id="2_ihj31"]
+
+[node name="PlayMat" type="Node2D"]
+
+[node name="PlayMatSlot" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(80, 136)
+CardLimit = 1
+
+[node name="PlayMatSlot2" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(128, 136)
+CardLimit = 1
+
+[node name="PlayMatSlot3" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(176, 136)
+CardLimit = 1
+
+[node name="PlayMatSlot4" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(224, 136)
+CardLimit = 1
+
+[node name="PlayMatSlot5" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(272, 136)
+CardLimit = 1
+
+[node name="PlayMatSlot6" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(80, 200)
+CardLimit = 1
+
+[node name="PlayMatSlot7" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(128, 200)
+CardLimit = 1
+
+[node name="PlayMatSlot8" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(176, 200)
+CardLimit = 1
+
+[node name="PlayMatSlot9" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(224, 200)
+CardLimit = 1
+
+[node name="PlayMatSlot10" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(272, 200)
+CardLimit = 1
+
+[node name="PlayMatSlot11" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(80, 264)
+CardLimit = 1
+
+[node name="PlayMatSlot12" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(128, 264)
+CardLimit = 1
+
+[node name="PlayMatSlot13" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(176, 264)
+CardLimit = 1
+
+[node name="PlayMatSlot14" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(224, 264)
+CardLimit = 1
+
+[node name="PlayMatSlot15" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(272, 264)
+CardLimit = 1
+
+[node name="PlayMatSlot16" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(80, 328)
+CardLimit = 1
+
+[node name="PlayMatSlot17" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(128, 328)
+CardLimit = 1
+
+[node name="PlayMatSlot18" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(176, 328)
+CardLimit = 1
+
+[node name="PlayMatSlot19" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(224, 328)
+CardLimit = 1
+
+[node name="PlayMatSlot20" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(272, 328)
+CardLimit = 1
+
+[node name="PlayMatSlot21" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(80, 392)
+CardLimit = 1
+
+[node name="PlayMatSlot22" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(128, 392)
+CardLimit = 1
+
+[node name="PlayMatSlot23" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(176, 392)
+CardLimit = 1
+
+[node name="PlayMatSlot24" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(224, 392)
+CardLimit = 1
+
+[node name="PlayMatSlot25" parent="." instance=ExtResource("1_0a40n")]
+position = Vector2(272, 392)
+CardLimit = 1
+
+[node name="PlayingCard" parent="." instance=ExtResource("2_ihj31")]
+position = Vector2(424, 152)
+FaceUp = true
