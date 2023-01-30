@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://r3hmtyer5udp"]
+
+[ext_resource type="Script" path="res://Scenes/PlayingCardDeck/PlayingCardDeck.gd" id="1_cbf4y"]
+[ext_resource type="PackedScene" uid="uid://b5ohg27561w8n" path="res://Scenes/PlayingCard/PlayingCard.tscn" id="2_b4co5"]
+
+[node name="PlayingCardDeck" type="Node2D" node_paths=PackedStringArray("CardContainerNode")]
+script = ExtResource("1_cbf4y")
+PlayingCardScene = ExtResource("2_b4co5")
+CardsInContainer = []
+Public = false
+CardContainerNode = NodePath("Cards")
+
+[node name="Cards" type="Node2D" parent="."]

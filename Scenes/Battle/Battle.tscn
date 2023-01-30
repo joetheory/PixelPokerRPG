@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgiob7c7esshh"]
+
+[ext_resource type="PackedScene" uid="uid://ctuacfos3hhfr" path="res://Scenes/PlayMat/PlayMat.tscn" id="1_f3ast"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle.gd" id="1_kmnxd"]
+[ext_resource type="PackedScene" uid="uid://r3hmtyer5udp" path="res://Scenes/PlayingCardDeck/PlayingCardDeck.tscn" id="2_ifwfb"]
+[ext_resource type="PackedScene" uid="uid://cj6fe416q1mn6" path="res://Scenes/PlayersHand/PlayersHand.tscn" id="3_3dk0n"]
+
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("deck", "player_hand")]
+script = ExtResource("1_kmnxd")
+deck = NodePath("PlayingCardDeck")
+player_hand = NodePath("PlayersHand")
+
+[node name="PlayMat" parent="." instance=ExtResource("1_f3ast")]
+position = Vector2(65, 121)
+
+[node name="PlayingCardDeck" parent="." instance=ExtResource("2_ifwfb")]
+position = Vector2(348, 150)
+
+[node name="PlayersHand" parent="." instance=ExtResource("3_3dk0n")]
+position = Vector2(175, 497)
+Public = true

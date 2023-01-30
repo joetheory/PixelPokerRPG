@@ -42,6 +42,7 @@ texture = ExtResource("2_6gwpm")
 expand_mode = 1
 
 [node name="ColorRect2" type="ColorRect" parent="Background"]
+layout_mode = 0
 offset_left = 366.0
 offset_top = 51.0
 offset_right = 929.0
@@ -49,6 +50,7 @@ offset_bottom = 211.0
 color = Color(0, 0, 0, 0.639216)
 
 [node name="Enemy" type="Label" parent="Background"]
+layout_mode = 0
 offset_left = 383.0
 offset_top = 69.0
 offset_right = 917.0
