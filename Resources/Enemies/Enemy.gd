@@ -1,3 +1,5 @@
+@icon("res://Resources/Enemies/enemy.png")
+
 class_name Enemy extends Resource
 
 @export var enemy_name : String
@@ -11,6 +13,7 @@ class_name Enemy extends Resource
 		return enemy_current_health
 @export var enemy_max_hand_size : int
 @export var enemy_mutli_damage : int
+
 
 signal ENEMYDEAD
 

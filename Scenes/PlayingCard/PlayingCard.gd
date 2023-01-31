@@ -48,8 +48,6 @@ func flipFaceDown() -> void:
 	pass
 
 func moveToContainer(target : PlayingCardContainer) -> void:
-	if target.Public:
-		self.flipFaceUp()
 	self.reparent(target.CardContainerNode)	
 	self.CurrentAreaEntered = target
 	self.PreviousAreaEntered = target

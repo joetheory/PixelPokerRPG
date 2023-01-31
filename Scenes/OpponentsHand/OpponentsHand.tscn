@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cug8s8x88cfb1"]
+
+[ext_resource type="Script" path="res://Scenes/OpponentsHand/OpponentsHand.gd" id="1_m7xxk"]
+
+[node name="OpponentHand" type="Node2D"]
+script = ExtResource("1_m7xxk")
