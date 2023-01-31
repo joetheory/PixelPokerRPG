@@ -4,10 +4,11 @@ extends BaseState
 
 
 func enter() -> void:
-	StateOwner.Selected = true
+	StateOwner.selected = true
 	
 
 func process(delta) -> void:
-	if StateOwner.Selected:
-		StateOwner.global_position = lerp(StateOwner.global_position, StateOwner.get_global_mouse_position(), delta * 25)
-
+	if StateOwner.selected:
+		StateOwner.global_position = lerp(StateOwner.global_position, StateOwner.get_global_mouse_position() + Vector2(0,20), delta * 25)
+		StateOwner.look_at(StateOwner.get_global_mouse_position() + Vector2(45,45))
+		

@@ -11,18 +11,20 @@ class_name PlayMatSlot extends PlayingCardContainer
 # - METHODS - ##################################################################
 func _ready() -> void:
 	self.add_to_group("PlayMatSlots")
+	
+func arrangeCards() -> void:
+	
+	cardContainerNode.get_children().map( func(card): card.rotation = 0)
+	pass
 
 func _on_droppable_area_area_entered(area : Area2D):
-	if area.owner.Selectable:
-		area.owner.PreviousAreaEntered = area.owner.CurrentAreaEntered
-		area.owner.CurrentAreaEntered = self
+	if area.owner.selectable:
+		area.owner.previousAreaEntered = area.owner.currentAreaEntered
+		area.owner.currentAreaEntered = self
 
 
 func _on_droppable_area_area_exited(area: Area2D) -> void:
-	if area.owner.Selectable:
-		area.owner.CurrentAreaEntered = area.owner.PreviousAreaEntered
-		area.owner.PreviousAreaEntered = self
+	if area.owner.selectable:
+		area.owner.currentAreaEntered = area.owner.previousAreaEntered
+		area.owner.previousAreaEntered = self
 
-
-func _on_cards_child_entered_tree(node: PlayingCard) -> void:
-	node.rotation = 0

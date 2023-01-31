@@ -1,42 +1,58 @@
 extends Node2D
 
 @export var deck : PlayingCardDeck
-@export var player_hand : PlayersHand
-@export var opponent_hand : OpponentsHand
+@export var playerHand : PlayersHand
+@export var opponentHand : OpponentsHand
 @export var encounter : Encounter
-@export var playmat_scene : PackedScene
+@export var playMatScene : PackedScene
+
+var encounterCards : Array[PlayingCard]
+var playMat : PlayMat
 
 func _ready() -> void:
-	var playmat : PlayMat = playmat_scene.instantiate() as PlayMat
-	playmat.Rows = encounter.PlayMatSize.x
-	playmat.Columns = encounter.PlayMatSize.y
-	playmat.position = Vector2(200,200)
-	add_child(playmat)
-	dealCardsToPlayer()
-	player_hand.arrangeCards()
-	assembleCardsToDeal()
+	_InstantiatePlayMat()
+	_CreateDeck()
+	_PullEncounterCardsFromDeck()
+	print(encounterCards)
+	_DealCardsToPlayer()
 	
-func assembleCardsToDeal() -> void:
+	
+func _InstantiatePlayMat() -> void:
+	var newPlayMat : PlayMat = playMatScene.instantiate() as PlayMat
+	newPlayMat.rows = encounter.playMatSize.x
+	newPlayMat.columns = encounter.playMatSize.y
+	newPlayMat.position = Vector2(100,100)
+	add_child(newPlayMat)
+	playMat = newPlayMat
+
+func _AssembleCardsToDeal() -> void:
 	var cardsToDeal : Dictionary
-	var totalCardsNeeded : int = player_hand.CardLimit + opponent_hand.CardLimit
-	print(totalCardsNeeded)
-	for counter in player_hand.CardLimit:
-		cardsToDeal[counter] = { "card":deck.CardsInContainer.pop_back(), "target":player_hand }
-	#cardsToDeal[]
+	var totalCardsNeeded : int = playerHand.cardLimit + opponentHand.cardLimit
+	for counter in totalCardsNeeded:
+		cardsToDeal[counter] = { "card":deck.cardContainerNode.get_children().pop_back(), "target":playerHand }
 	
-func dealCardsToPlayer() -> void:
+func _CreateDeck() -> void:
+	deck.createFreshDeck()
+	
+func _DealCardsToPlayer() -> void:
 	var tween = get_tree().create_tween()
-	for card_num in player_hand.CardLimit:
-		var card : PlayingCard = deck.CardsInContainer.pop_back() as PlayingCard
-		tween.tween_property(card.RearFace,"scale",Vector2(0,1),card.FlipAnimationSpeed)
+	for cardNum in playerHand.cardLimit:
+		var card : PlayingCard = deck.cardContainerNode.get_child(0) as PlayingCard
+		tween.tween_property(card.rearFace,"scale",Vector2(0,1),card.flipAnimationSpeed)
 		tween.tween_callback( func():
-			card.RearFace.visible = false
-			card.FrontFace.scale = Vector2(0,1)
-			card.FrontFace.visible = true
+			card.rearFace.visible = false
+			card.frontFace.scale = Vector2(0,1)
+			card.frontFace.visible = true
 		)
-		tween.tween_property(card.FrontFace,"scale",Vector2(1,1),card.FlipAnimationSpeed)
-		tween.tween_property(card,"global_position",player_hand.global_position,.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.tween_property(card.frontFace,"scale",Vector2(1,1),card.flipAnimationSpeed)
+		tween.tween_property(card,"global_position",playerHand.global_position,.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		tween.tween_callback( func():
-			card.moveToContainer(player_hand)	
+			card.moveToContainer(playerHand)	
 		)
-		
+func _PullEncounterCardsFromDeck() -> void:
+	var card : PlayingCard
+	var playMatSlot : PlayMatSlot
+	for number in encounter.playMatSet.cardsToPullFromDeck.size():
+		card = deck.cardContainerNode.get_node(encounter.playMatSet.cardsToPullFromDeck[number])
+		playMatSlot = playMat.get_node(encounter.playMatSet.playMatSlotsToPopulate[number])
+		card.moveToContainer(playMatSlot)

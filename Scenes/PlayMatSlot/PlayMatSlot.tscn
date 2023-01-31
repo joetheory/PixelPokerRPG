@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://Scenes/PlayMatSlot/PlayMatSlot.gd" id="1_b6nys"]
 [ext_resource type="Theme" uid="uid://duyan8gqafjo7" path="res://Scenes/PlayingCard/PlayingCardTheme.tres" id="2_7cone"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m64t1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fw3gq"]
 size = Vector2(25, 25)
 
-[node name="PlayMatSlot" type="Node2D" node_paths=PackedStringArray("CardContainerNode")]
+[node name="PlayMatSlot" type="Node2D" node_paths=PackedStringArray("cardContainerNode")]
 script = ExtResource("1_b6nys")
-CardContainerNode = NodePath("Cards")
+cardContainerNode = NodePath("Cards")
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = -20.0
@@ -22,7 +22,7 @@ theme = ExtResource("2_7cone")
 [node name="DroppableArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DroppableArea"]
-shape = SubResource("RectangleShape2D_m64t1")
+shape = SubResource("RectangleShape2D_fw3gq")
 
 [connection signal="child_entered_tree" from="Cards" to="." method="_on_cards_child_entered_tree"]
 [connection signal="area_entered" from="DroppableArea" to="." method="_on_droppable_area_area_entered"]

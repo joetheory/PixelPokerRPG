@@ -2,5 +2,9 @@
 
 [ext_resource type="Script" path="res://Scenes/OpponentsHand/OpponentsHand.gd" id="1_m7xxk"]
 
-[node name="OpponentHand" type="Node2D"]
+[node name="OpponentHand" type="Node2D" node_paths=PackedStringArray("cardContainerNode")]
 script = ExtResource("1_m7xxk")
+public = false
+cardContainerNode = NodePath("Cards")
+
+[node name="Cards" type="Node2D" parent="."]

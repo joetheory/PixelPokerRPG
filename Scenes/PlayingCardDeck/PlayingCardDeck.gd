@@ -1,7 +1,7 @@
 class_name PlayingCardDeck extends PlayingCardContainer
 
-@export var PlayingCardScene : PackedScene = preload("res://Scenes/PlayingCard/PlayingCard.tscn") as PackedScene
-@export var CardsInContainer : Array[PlayingCard]
+@export var playingCardScene : PackedScene = preload("res://Scenes/PlayingCard/PlayingCard.tscn") as PackedScene
+@export var cardsInContainer : Array[PlayingCard]
 
 # - VARIABLES - ################################################################
 
@@ -11,19 +11,16 @@ class_name PlayingCardDeck extends PlayingCardContainer
 
 # - METHODS - ##################################################################
 
-func _ready() -> void:
-	createFreshDeck()
-
 func createFreshDeck() -> void:
-	for Suit in PlayingCard.new().Suits:
-		for Rank in PlayingCard.new().Ranks:
-			var NewCard :=  PlayingCardScene.instantiate() as PlayingCard
-			NewCard.Suit = Suit
-			NewCard.Rank = Rank
-			NewCard.CurrentAreaEntered = self
-			NewCard.PreviousAreaEntered = self
-			CardsInContainer.append(NewCard)
-			
-	CardsInContainer.shuffle()
-	for NewCard in CardsInContainer:
-		CardContainerNode.add_child(NewCard)
+	for suit in PlayingCard.new().suits:
+		for rank in PlayingCard.new().ranks:
+			var newCard :=  playingCardScene.instantiate() as PlayingCard
+			newCard.name = str(rank) + "-" + str(suit)
+			newCard.suit = suit
+			newCard.rank = rank
+			newCard.currentAreaEntered = self
+			newCard.previousAreaEntered = self
+			cardsInContainer.append(newCard)
+	cardsInContainer.shuffle()
+	for newCard in cardsInContainer:
+		cardContainerNode.add_child(newCard)

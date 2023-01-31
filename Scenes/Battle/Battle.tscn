@@ -7,13 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://cj6fe416q1mn6" path="res://Scenes/PlayersHand/PlayersHand.tscn" id="3_3dk0n"]
 [ext_resource type="PackedScene" uid="uid://cug8s8x88cfb1" path="res://Scenes/OpponentsHand/OpponentsHand.tscn" id="5_atkak"]
 
-[node name="Battle" type="Node2D" node_paths=PackedStringArray("deck", "player_hand", "opponent_hand")]
+[node name="Battle" type="Node2D" node_paths=PackedStringArray("deck", "playerHand", "opponentHand")]
 script = ExtResource("1_kmnxd")
 deck = NodePath("PlayingCardDeck")
-player_hand = NodePath("PlayersHand")
-opponent_hand = NodePath("OpponentHand")
+playerHand = NodePath("PlayersHand")
+opponentHand = NodePath("OpponentHand")
 encounter = ExtResource("2_lfsds")
-playmat_scene = ExtResource("1_f3ast")
+playMatScene = ExtResource("1_f3ast")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -33.0
@@ -26,9 +26,11 @@ color = Color(0, 0.0784314, 0.141176, 1)
 position = Vector2(348, 150)
 
 [node name="PlayersHand" parent="." instance=ExtResource("3_3dk0n")]
-position = Vector2(175, 497)
-Public = true
+position = Vector2(175, 433)
+cardCurveFactor = 30.0
+cardLimit = 10
 
-[node name="OpponentHand" parent="." instance=ExtResource("5_atkak")]
+[node name="OpponentHand" parent="." node_paths=PackedStringArray("cardContainerNode") instance=ExtResource("5_atkak")]
 position = Vector2(175, 58)
-CardLimit = 4
+cardLimit = 3
+cardContainerNode = NodePath("")
