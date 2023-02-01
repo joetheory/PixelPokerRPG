@@ -1,21 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgiob7c7esshh"]
+[gd_scene load_steps=9 format=3 uid="uid://dgiob7c7esshh"]
 
 [ext_resource type="PackedScene" uid="uid://ctuacfos3hhfr" path="res://Scenes/PlayMat/PlayMat.tscn" id="1_f3ast"]
 [ext_resource type="Script" path="res://Scenes/Battle/Battle.gd" id="1_kmnxd"]
 [ext_resource type="PackedScene" uid="uid://r3hmtyer5udp" path="res://Scenes/PlayingCardDeck/PlayingCardDeck.tscn" id="2_ifwfb"]
-[ext_resource type="Resource" uid="uid://dg28e5igylb4q" path="res://Resources/Encounters/Introduction.tres" id="2_lfsds"]
 [ext_resource type="PackedScene" uid="uid://cj6fe416q1mn6" path="res://Scenes/PlayersHand/PlayersHand.tscn" id="3_3dk0n"]
 [ext_resource type="PackedScene" uid="uid://cug8s8x88cfb1" path="res://Scenes/OpponentsHand/OpponentsHand.tscn" id="5_atkak"]
+[ext_resource type="Curve" uid="uid://c6k8ebt0qtyoy" path="res://Resources/Curves/hand_spread_curve.tres" id="7_h72q6"]
+[ext_resource type="Curve" uid="uid://bvixrf64aupen" path="res://Resources/Curves/card_arc_curve.tres" id="8_0oi2b"]
+[ext_resource type="Curve" uid="uid://b5letjygonutj" path="res://Resources/Curves/hand_tilt_curve.tres" id="9_j064h"]
 
 [node name="Battle" type="Node2D" node_paths=PackedStringArray("deck", "playerHand", "opponentHand")]
 script = ExtResource("1_kmnxd")
 deck = NodePath("PlayingCardDeck")
 playerHand = NodePath("PlayersHand")
 opponentHand = NodePath("OpponentHand")
-encounter = ExtResource("2_lfsds")
 playMatScene = ExtResource("1_f3ast")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = -20
 offset_left = -33.0
 offset_top = -33.0
 offset_right = 986.0
@@ -27,9 +29,10 @@ position = Vector2(348, 150)
 
 [node name="PlayersHand" parent="." instance=ExtResource("3_3dk0n")]
 position = Vector2(175, 433)
-cardCurveFactor = 30.0
+cardSpreadFactor = 0.001
 
-[node name="OpponentHand" parent="." node_paths=PackedStringArray("cardContainerNode") instance=ExtResource("5_atkak")]
-position = Vector2(175, 58)
-cardLimit = 3
-cardContainerNode = NodePath("")
+[node name="OpponentHand" parent="." instance=ExtResource("5_atkak")]
+position = Vector2(175, 40)
+cardSpreadCurve = ExtResource("7_h72q6")
+cardArcCurve = ExtResource("8_0oi2b")
+cardRotationCurve = ExtResource("9_j064h")

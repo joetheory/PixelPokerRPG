@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Chapter" load_steps=2 format=3 uid="uid://c6wdo36vnij3q"]
+
+[ext_resource type="Script" path="res://Resources/Chapters/Chapter.gd" id="1_xcak6"]
+
+[resource]
+script = ExtResource("1_xcak6")
+name = "Introduction"
+description = "Description of Introduction"
+developmentNotes = "none"
+steps = [null]

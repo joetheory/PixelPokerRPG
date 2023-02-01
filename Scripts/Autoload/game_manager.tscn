@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://yqut34r8ymx1"]
+
+[ext_resource type="Script" path="res://Scripts/Autoload/GameManager.gd" id="1_thivt"]
+[ext_resource type="Resource" uid="uid://dg28e5igylb4q" path="res://Resources/Encounters/Introduction.tres" id="2_wjqsq"]
+[ext_resource type="Resource" uid="uid://bgi0me8t1gmcp" path="res://Resources/CharacterClasses/Mage.tres" id="3_7clja"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_thivt")
+current_encounter = ExtResource("2_wjqsq")
+character_name = "Jaboo"
+character_class = ExtResource("3_7clja")

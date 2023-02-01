@@ -1,7 +1,9 @@
 extends Node
 
-var current_enemy : Enemy
-var character_name : String
-var character_class : CharacterClass
+@export var current_encounter : Encounter
+@export var current_enemy : Enemy
+@export var character_name : String
+@export var character_class : CharacterClass
 
-
+func _ready() -> void:
+	current_encounter = preload("res://Resources/Encounters/Introduction.tres")

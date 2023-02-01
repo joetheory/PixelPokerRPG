@@ -1,0 +1,13 @@
+{
+	"dialogueName": "This is a test.",
+	"dialoge": [
+		{
+			"speaker": "This Guy",
+			"script": "Here is a thing I'm saying."
+		},
+		{
+			"speaker": "Other Guy",
+			"script": "Yo, bro! I hear that!"
+		}
+	]
+}

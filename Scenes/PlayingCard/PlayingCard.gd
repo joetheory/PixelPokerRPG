@@ -15,7 +15,7 @@ var selected : bool = false
 var selectable : bool = true
 var currentAreaEntered : PlayingCardContainer
 var previousAreaEntered : PlayingCardContainer
-@onready var finiteStateMachine : StateMachine = $States
+@onready var finiteStateMachine := $States as StateMachine
 
 # - SIGNALS - ##################################################################
 

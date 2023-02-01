@@ -8,6 +8,5 @@
 script = ExtResource("1_p36kv")
 name = "Introduction"
 description = "A description"
-playMatSize = Vector2i(3, 3)
 enemy = ExtResource("1_jafhl")
 playMatSet = ExtResource("2_onm0w")

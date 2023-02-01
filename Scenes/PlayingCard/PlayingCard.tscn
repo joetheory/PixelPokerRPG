@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scenes/PlayingCard/SelectedState.gd" id="7_p6r4o"]
 [ext_resource type="Script" path="res://Scenes/PlayingCard/DroppedState.gd" id="8_h0d8u"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bpiv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8a7bi"]
 size = Vector2(10, 10)
 
 [node name="PlayingCard" type="Node2D" node_paths=PackedStringArray("frontFace", "rearFace")]
@@ -39,7 +39,7 @@ flat = true
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_3bpiv")
+shape = SubResource("RectangleShape2D_8a7bi")
 debug_color = Color(0.956863, 0, 0.541176, 0.419608)
 
 [node name="States" type="Node" parent="." node_paths=PackedStringArray("initial_state")]

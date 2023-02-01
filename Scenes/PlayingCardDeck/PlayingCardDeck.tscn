@@ -6,6 +6,8 @@
 [node name="PlayingCardDeck" type="Node2D" node_paths=PackedStringArray("cardContainerNode")]
 script = ExtResource("1_cbf4y")
 playingCardScene = ExtResource("2_b4co5")
+cardsInContainer = []
+cardLimit = 52
 cardContainerNode = NodePath("Cards")
 
 [node name="Cards" type="Node2D" parent="."]
