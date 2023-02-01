@@ -51,6 +51,7 @@ func moveToContainer(target : PlayingCardContainer) -> void:
 	self.reparent(target.cardContainerNode,false)	
 	self.currentAreaEntered = target
 	self.previousAreaEntered = target
+	self.position = Vector2.ZERO
 	target.arrangeCards()
 	
 

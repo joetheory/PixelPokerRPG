@@ -13,7 +13,6 @@ func _ready() -> void:
 	_InstantiatePlayMat()
 	_CreateDeck()
 	_PullEncounterCardsFromDeck()
-	print(encounterCards)
 	_DealCardsToPlayer()
 	
 	
@@ -36,8 +35,10 @@ func _CreateDeck() -> void:
 	
 func _DealCardsToPlayer() -> void:
 	var tween = get_tree().create_tween()
+	
 	for cardNum in playerHand.cardLimit:
 		var card : PlayingCard = deck.cardContainerNode.get_child(0) as PlayingCard
+		card.reparent(playerHand)
 		tween.tween_property(card.rearFace,"scale",Vector2(0,1),card.flipAnimationSpeed)
 		tween.tween_callback( func():
 			card.rearFace.visible = false
@@ -49,6 +50,8 @@ func _DealCardsToPlayer() -> void:
 		tween.tween_callback( func():
 			card.moveToContainer(playerHand)	
 		)
+
+		
 func _PullEncounterCardsFromDeck() -> void:
 	var card : PlayingCard
 	var playMatSlot : PlayMatSlot

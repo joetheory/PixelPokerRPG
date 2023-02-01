@@ -28,7 +28,6 @@ position = Vector2(348, 150)
 [node name="PlayersHand" parent="." instance=ExtResource("3_3dk0n")]
 position = Vector2(175, 433)
 cardCurveFactor = 30.0
-cardLimit = 10
 
 [node name="OpponentHand" parent="." node_paths=PackedStringArray("cardContainerNode") instance=ExtResource("5_atkak")]
 position = Vector2(175, 58)
