@@ -11,6 +11,8 @@ class_name PlayersHand extends PlayingCardContainer
 
 
 # - METHODS - ##################################################################
+func _ready() -> void:
+	Events.CardReparented.connect(arrangeCards)
 	
 func arrangeCards() -> void:
 	var cardsInHand : Array = cardContainerNode.get_children()

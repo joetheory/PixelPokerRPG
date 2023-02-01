@@ -46,13 +46,14 @@ func flipFaceDown() -> void:
 	pass
 
 func moveToContainer(target : PlayingCardContainer) -> void:
-	if target.public : 
+	if target.public and not faceUp: 
 		self.flipFaceUp()
 	self.reparent(target.cardContainerNode,false)	
 	self.currentAreaEntered = target
 	self.previousAreaEntered = target
 	self.position = Vector2.ZERO
 	target.arrangeCards()
+	Events.emit_signal("CardReparented")
 	
 
 func _on_button_button_down():
